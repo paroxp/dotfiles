@@ -135,6 +135,7 @@ function init {
 	info "Initialising environment."
 	check_dependencies
 
+	copy ./.zshrc $WORKING_DIR/.zshrc -O
 	copy ./.vimrc $WORKING_DIR/.vimrc -O
 	copy ./.aliases $WORKING_DIR/.aliases -O
 	copy ./.alias $WORKING_DIR/.alias -Od
@@ -154,11 +155,17 @@ function list {
 	echo -e "update\tUpdates the most important files with the new ones. ${WARNING}This will override important files.${RESET}"
 }
 
+function load_config {
+	zsh
+	source $WORKING_DIR/.zshrc
+}
+
 # Update the environment for the developer.
 function update {
 	info "Updating environment."
 	check_dependencies
 
+	copy ./.zshrc $WORKING_DIR/.zshrc -O
 	copy ./.vimrc $WORKING_DIR/.vimrc -O
 	copy ./.aliases $WORKING_DIR/.aliases -O
 	copy ./.alias $WORKING_DIR/.alias -d
@@ -172,7 +179,7 @@ function update {
 ###############################
 
 case $ACTION in
-	init ) init;;
-	update ) update;;
+	init ) init; load_config;;
+	update ) update; load_config;;
 	* ) list;
 esac
