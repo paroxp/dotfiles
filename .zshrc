@@ -91,3 +91,8 @@ if [ -e ~/.exports ]; then
 	source ~/.exports
 fi
 
+# Check if the custom file exists and then import it.
+if [ -e ~/.custom ]; then
+	source ~/.custom
+fi
+
