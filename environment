@@ -1,6 +1,8 @@
 #!/usr/bin/env bash
 
 ACTION=$1
+DEBUG=0
+WORKING_DIR=$HOME
 
 ERROR=`tput setaf 1`
 SUCCESS=`tput setaf 2`
@@ -8,7 +10,12 @@ WARNING=`tput setaf 3`
 INFO=`tput setaf 4`
 RESET=`tput sgr0`
 
-WORKING_DIR=./tmp
+function debug {
+	if [ $DEBUG -eq 1 ]; then
+		MSG=$1
+		echo "`tput setab 3``tput setaf 0`[DEBUG] ${MSG}${RESET}"
+	fi
+}
 
 # Print out an error message.
 function error {
@@ -28,14 +35,24 @@ function success {
 	echo "${SUCCESS}${MSG}${RESET}"
 }
 
+# Print out a success message.
+function warning {
+	MSG=$1
+	echo "${WARNING}${MSG}${RESET}"
+}
+
 # Check if the application is installed in the system.
 function check_application {
 	NAME=$1
 	APP=$2
 
+	debug "Checking application: ${NAME}"
+
 	if hash $APP 2>/dev/null; then
+		debug "${NAME} installed."
 		return
 	else
+		debug "${NAME} not installed."
 		error "Please install ${NAME} on your system."
 		exit 1
 	fi
@@ -58,12 +75,19 @@ function check_directory {
 	DIRECTORY=$1
 	MSG=$2
 
+	debug "Checking directory: ${DIRECTORY}"
+
 	if [ -d "$DIRECTORY" ]; then
+		debug "${DIRECTORY} exists."
 		return
 	else
+		debug "${DIRECTORY} does not exist."
+
 		if [ -z "$MSG" ]; then
+			debug "Custom MSG not set."
 			error "Please make sure '${DIRECTORY}' exists."
 		else
+			debug "Custom MSG set."
 			error "$MSG"
 		fi
 		exit 1
@@ -76,17 +100,34 @@ function copy {
 	DIST=$2
 	FLAGS=$3
 
-	info "Copying ${SRC}."
+	info "Copying ${SRC}"
 
-	if [ -z "$FLAGS" ] && [ $FLAGS == *"O"* ]; then
-		cp ${SRC} ${DIST}
-	else
-		if [ -e "$DIST" ]; then
-			return
-		else
-			cp ${SRC} ${DIST}
+	if [ -n "$FLAGS" ]; then
+		debug "Flags '${FLAGS}' passed."
+
+		if [ -d "$SRC" ]; then debug "D"; else debug "ND"; fi
+		if [[ $FLAGS == *"d"* ]] && [ -d "$SRC" ]; then
+			debug "-d flag detected."
+			CP_FLAGS=${CP_FLAGS}"R"
+		fi
+
+		if [ -f $DIST ]; then debug "E"; else debug "NE"; fi
+		if [[ $FLAGS == *"O"* ]] && [ -f $DIST ]; then
+			debug "-O flag detected."
+			CP_FLAGS=${CP_FLAGS}"rf"
 		fi
 	fi
+
+	if [ -n "$CP_FLAGS" ]; then
+		debug "Custom 'cp -${CP_FLAGS}' flags established."
+		cp -${CP_FLAGS} ${SRC} ${DIST}
+	else
+		debug "No custom flags established."
+		cp ${SRC} ${DIST}
+	fi
+
+	debug "Unsetting CP_FLAGS"
+	unset CP_FLAGS
 }
 
 # Initialise the environment for the developer.
@@ -94,13 +135,14 @@ function init {
 	info "Initialising environment."
 	check_dependencies
 
-	# copy 
-	# Override .vimrc
-	# Override .aliases.rp
-	# Override .alias
-	# Override .custom.rp
-	# Override .exports.rp
-	# Override .oh-my-zsh/themes/honukai.zsh-theme
+	copy ./.vimrc $WORKING_DIR/.vimrc -O
+	copy ./.aliases.rp $WORKING_DIR/.aliases.rp -O
+	copy ./.alias $WORKING_DIR/.alias -Od
+	copy ./.custom.rp $WORKING_DIR/.custom.rp -O
+	copy ./.exports.rp $WORKING_DIR/.exports.rp -O
+	copy ./.oh-my-zsh/themes/honukai.zsh-theme $WORKING_DIR/.oh-my-zsh/themes/honukai.zsh-theme -O
+
+	success "Your environment has been initialised."
 }
 
 # List the functionality covered by this application.
@@ -117,14 +159,20 @@ function update {
 	info "Updating environment."
 	check_dependencies
 
+	copy ./.vimrc $WORKING_DIR/.vimrc -O
+	copy ./.aliases.rp $WORKING_DIR/.aliases.rp -O
+	copy ./.alias $WORKING_DIR/.alias -d
+	copy ./.custom.rp $WORKING_DIR/.custom.rp
+	copy ./.exports.rp $WORKING_DIR/.exports.rp
+	copy ./.oh-my-zsh/themes/honukai.zsh-theme $WORKING_DIR/.oh-my-zsh/themes/honukai.zsh-theme -O
 
+	success "Your environment has been updated."
 }
 
 ###############################
 
 case $ACTION in
-	init ) init; break;;
-	update ) update; break;;
+	init ) init;;
+	update ) update;;
 	* ) list;
 esac
-
