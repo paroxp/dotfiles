@@ -1,0 +1,54 @@
+#############
+# Functions #
+#############
+
+# Choose the environment to be loaded.
+function choose_environment() {
+	_ENV=$1
+	_CHOSEN=$HOME/.alias/$_ENV
+
+	if [ -e  ${_CHOSEN} ]; then
+		source ${_CHOSEN}
+	fi
+}
+
+# Edit the specified alias, or the aliases configuration.
+function edit_alias() {
+	ALIAS=$1
+
+	if [ ALIAS ]; then
+		vi ${HOME}/.alias/${ALIAS}
+	else
+		vi ${HOME/.aliases}
+	fi
+}
+
+# Go to the specific Project or create it's directory if one does not exist.
+function go_to_project() {
+	PROJECT=$1
+	DIRECTORY=${HOME}/Projects/$PROJECT
+
+	if [ -d "$DIRECTORY" ]; then
+		cd $DIRECTORY
+	else
+		echo "Project '${PROJECT}' does not exist...\nWould you like to create this directory?"
+		select yn in "Yes" "No"; do
+			case $yn in
+				Yes ) mkdir $DIRECTORY; echo "Roger that!"; cd $DIRECTORY; break;;
+				No ) echo "Roger."; break;;
+			esac
+		done
+	fi
+}
+
+#########
+# Links #
+#########
+
+alias env='choose_environment'
+alias project='go_to_project'
+alias vialias='edit_alias'
+
+# Auto load
+source ${HOME}/.alias/default
+
