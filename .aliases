@@ -19,7 +19,7 @@ function edit_alias() {
 	if [ ALIAS ]; then
 		vi ${HOME}/.alias/${ALIAS}
 	else
-		vi ${HOME}/.aliases.rp
+		vi ${HOME}/.aliases
 	fi
 }
 
@@ -51,4 +51,3 @@ alias vialias='edit_alias'
 
 # Auto load
 source ${HOME}/.alias/default
-

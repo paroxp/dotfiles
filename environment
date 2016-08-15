@@ -136,10 +136,10 @@ function init {
 	check_dependencies
 
 	copy ./.vimrc $WORKING_DIR/.vimrc -O
-	copy ./.aliases.rp $WORKING_DIR/.aliases.rp -O
+	copy ./.aliases $WORKING_DIR/.aliases -O
 	copy ./.alias $WORKING_DIR/.alias -Od
-	copy ./.custom.rp $WORKING_DIR/.custom.rp -O
-	copy ./.exports.rp $WORKING_DIR/.exports.rp -O
+	copy ./.custom $WORKING_DIR/.custom -O
+	copy ./.exports $WORKING_DIR/.exports -O
 	copy ./.oh-my-zsh/themes/honukai.zsh-theme $WORKING_DIR/.oh-my-zsh/themes/honukai.zsh-theme -O
 
 	success "Your environment has been initialised."
@@ -160,10 +160,10 @@ function update {
 	check_dependencies
 
 	copy ./.vimrc $WORKING_DIR/.vimrc -O
-	copy ./.aliases.rp $WORKING_DIR/.aliases.rp -O
+	copy ./.aliases $WORKING_DIR/.aliases -O
 	copy ./.alias $WORKING_DIR/.alias -d
-	copy ./.custom.rp $WORKING_DIR/.custom.rp
-	copy ./.exports.rp $WORKING_DIR/.exports.rp
+	copy ./.custom $WORKING_DIR/.custom
+	copy ./.exports $WORKING_DIR/.exports
 	copy ./.oh-my-zsh/themes/honukai.zsh-theme $WORKING_DIR/.oh-my-zsh/themes/honukai.zsh-theme -O
 
 	success "Your environment has been updated."
