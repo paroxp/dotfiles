@@ -84,15 +84,15 @@ source $ZSH/oh-my-zsh.sh
 # alias ohmyzsh="mate ~/.oh-my-zsh"
 
 # Import the aliases functionality.
-source ~/.aliases
+source ~/.aliases.rp
 
 # Check if the exports file exists and then import it.
 if [ -e ~/.exports ]; then
-	source ~/.exports
+	source ~/.exports.rp
 fi
 
 # Check if the custom file exists and then import it.
 if [ -e ~/.custom ]; then
-	source ~/.custom
+	source ~/.custom.rp
 fi
 

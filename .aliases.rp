@@ -19,7 +19,7 @@ function edit_alias() {
 	if [ ALIAS ]; then
 		vi ${HOME}/.alias/${ALIAS}
 	else
-		vi ${HOME/.aliases}
+		vi ${HOME}/.aliases.rp
 	fi
 }
 
