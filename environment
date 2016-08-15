@@ -1,9 +1,14 @@
 #!/usr/bin/env bash
 
+ACTION=$1
+
 ERROR=`tput setaf 1`
 SUCCESS=`tput setaf 2`
+WARNING=`tput setaf 3`
 INFO=`tput setaf 4`
 RESET=`tput sgr0`
+
+WORKING_DIR=./tmp
 
 # Print out an error message.
 function error {
@@ -36,6 +41,18 @@ function check_application {
 	fi
 }
 
+# Check for the dependencies.
+function check_dependencies {
+	info "Checking for dependencies."
+
+	check_application Git git
+	check_application Vim vim
+	check_application "Z Shell" zsh
+	check_directory $WORKING_DIR/.oh-my-zsh "Please make sure you've installed 'oh-my-zsh'."
+
+	success "All good."
+}
+
 # Check if the directory exist.
 function check_directory {
 	DIRECTORY=$1
@@ -53,24 +70,61 @@ function check_directory {
 	fi
 }
 
+# Copy the file from A to B.
+function copy {
+	SRC=$1
+	DIST=$2
+	FLAGS=$3
+
+	info "Copying ${SRC}."
+
+	if [ -z "$FLAGS" ] && [ $FLAGS == *"O"* ]; then
+		cp ${SRC} ${DIST}
+	else
+		if [ -e "$DIST" ]; then
+			return
+		else
+			cp ${SRC} ${DIST}
+		fi
+	fi
+}
+
+# Initialise the environment for the developer.
+function init {
+	info "Initialising environment."
+	check_dependencies
+
+	# copy 
+	# Override .vimrc
+	# Override .aliases.rp
+	# Override .alias
+	# Override .custom.rp
+	# Override .exports.rp
+	# Override .oh-my-zsh/themes/honukai.zsh-theme
+}
+
+# List the functionality covered by this application.
+function list {
+	echo -e "Display the list of functionality supported by DevEnv.\n"
+
+	echo -e "list\tLists any functionality covered by this application."
+	echo -e "init\tInitialises the developer environment. ${WARNING}This will override any existing setup!${RESET}"
+	echo -e "update\tUpdates the most important files with the new ones. ${WARNING}This will override important files.${RESET}"
+}
+
+# Update the environment for the developer.
+function update {
+	info "Updating environment."
+	check_dependencies
+
+
+}
+
 ###############################
 
-info "Initialise installation."
-
-info "Checking for dependencies."
-
-check_application Git git
-check_application Vim vim
-check_application "Z Shell" zsh
-check_directory $HOME/.oh-my-zsh "Please make sure you've installed 'oh-my-zsh'."
-
-success "All good."
-
-# Override .zshrc
-# Override .vimrc
-# Override .aliases.rp
-# Override .alias
-# Override .custom.rp
-# Override .exports.rp
-# Override .oh-my-zsh/themes/honukai.zsh-theme
+case $ACTION in
+	init ) init; break;;
+	update ) update; break;;
+	* ) list;
+esac
 
