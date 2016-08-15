@@ -47,6 +47,7 @@ function go_to_project() {
 
 alias env='choose_environment'
 alias project='go_to_project'
+alias refresh='source ${HOME}/.zshrc'
 alias vialias='edit_alias'
 
 # Auto load
