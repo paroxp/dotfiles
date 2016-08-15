@@ -95,54 +95,20 @@ function check_directory {
 	fi
 }
 
-# Copy the file from A to B.
-function copy {
-	SRC=$1
-	DIST=$2
-	FLAGS=$3
-
-	info "Copying ${SRC}"
-
-	if [ -n "$FLAGS" ]; then
-		debug "Flags '${FLAGS}' passed."
-
-		if [ -d "$SRC" ]; then debug "D"; else debug "ND"; fi
-		if [[ $FLAGS == *"d"* ]] && [ -d "$SRC" ]; then
-			debug "-d flag detected."
-			CP_FLAGS=${CP_FLAGS}"R"
-		fi
-
-		if [ -f $DIST ]; then debug "E"; else debug "NE"; fi
-		if [[ $FLAGS == *"O"* ]] && [ -f $DIST ]; then
-			debug "-O flag detected."
-			CP_FLAGS=${CP_FLAGS}"rf"
-		fi
-	fi
-
-	if [ -n "$CP_FLAGS" ]; then
-		debug "Custom 'cp -${CP_FLAGS}' flags established."
-		cp -${CP_FLAGS} ${SRC} ${DIST}
-	else
-		debug "No custom flags established."
-		cp ${SRC} ${DIST}
-	fi
-
-	debug "Unsetting CP_FLAGS"
-	unset CP_FLAGS
-}
-
 # Initialise the environment for the developer.
 function init {
 	info "Initialising environment."
 	check_dependencies
 
-	copy ./.zshrc $WORKING_DIR/.zshrc -O
-	copy ./.vimrc $WORKING_DIR/.vimrc -O
-	copy ./.aliases $WORKING_DIR/.aliases -O
-	copy ./.alias $WORKING_DIR/.alias -Od
-	copy ./.custom $WORKING_DIR/.custom -O
-	copy ./.exports $WORKING_DIR/.exports -O
-	copy ./.oh-my-zsh/themes/honukai.zsh-theme $WORKING_DIR/.oh-my-zsh/themes/honukai.zsh-theme -O
+	info "Copying files..."
+
+	cp -rf ./.zshrc $WORKING_DIR/.zshrc || exit 1
+	cp -rf ./.vimrc $WORKING_DIR/.vimrc || exit 1
+	cp -rf ./.aliases $WORKING_DIR/.aliases || exit 1
+	cp -Rf ./.alias $WORKING_DIR/.alias || exit 1
+	cp -rf ./.custom $WORKING_DIR/.custom || exit 1
+	cp -rf ./.exports $WORKING_DIR/.exports || exit 1
+	cp -rf ./.oh-my-zsh/themes/honukai.zsh-theme $WORKING_DIR/.oh-my-zsh/themes/honukai.zsh-theme || exit 1
 
 	success "Your environment has been initialised."
 }
@@ -167,13 +133,15 @@ function update {
 	info "Updating environment."
 	check_dependencies
 
-	copy ./.zshrc $WORKING_DIR/.zshrc -O
-	copy ./.vimrc $WORKING_DIR/.vimrc -O
-	copy ./.aliases $WORKING_DIR/.aliases -O
-	copy ./.alias $WORKING_DIR/.alias -d
-	copy ./.custom $WORKING_DIR/.custom
-	copy ./.exports $WORKING_DIR/.exports
-	copy ./.oh-my-zsh/themes/honukai.zsh-theme $WORKING_DIR/.oh-my-zsh/themes/honukai.zsh-theme -O
+	info "Copying important files..."
+
+	cp -rf ./.zshrc $WORKING_DIR/.zshrc || exit 1
+	cp -rf ./.vimrc $WORKING_DIR/.vimrc || exit 1
+	cp -rf ./.aliases $WORKING_DIR/.aliases || exit 1
+	cp -R ./.alias $WORKING_DIR/.alias || exit 1
+	cp ./.custom $WORKING_DIR/.custom
+	cp ./.exports $WORKING_DIR/.exports
+	cp -rf ./.oh-my-zsh/themes/honukai.zsh-theme $WORKING_DIR/.oh-my-zsh/themes/honukai.zsh-theme || exit 1
 
 	success "Your environment has been updated."
 }
