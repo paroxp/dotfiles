@@ -1,0 +1,76 @@
+#!/usr/bin/env bash
+
+ERROR=`tput setaf 1`
+SUCCESS=`tput setaf 2`
+INFO=`tput setaf 4`
+RESET=`tput sgr0`
+
+# Print out an error message.
+function error {
+	MSG=$1
+	echo "${ERROR}${MSG}${RESET}"
+}
+
+# Print out an info message.
+function info {
+	MSG=$1
+	echo "${INFO}${MSG}${RESET}"
+}
+
+# Print out a success message.
+function success {
+	MSG=$1
+	echo "${SUCCESS}${MSG}${RESET}"
+}
+
+# Check if the application is installed in the system.
+function check_application {
+	NAME=$1
+	APP=$2
+
+	if hash $APP 2>/dev/null; then
+		return
+	else
+		error "Please install ${NAME} on your system."
+		exit 1
+	fi
+}
+
+# Check if the directory exist.
+function check_directory {
+	DIRECTORY=$1
+	MSG=$2
+
+	if [ -d "$DIRECTORY" ]; then
+		return
+	else
+		if [ -z "$MSG" ]; then
+			error "Please make sure '${DIRECTORY}' exists."
+		else
+			error "$MSG"
+		fi
+		exit 1
+	fi
+}
+
+###############################
+
+info "Initialise installation."
+
+info "Checking for dependencies."
+
+check_application Git git
+check_application Vim vim
+check_application "Z Shell" zsh
+check_directory $HOME/.oh-my-zsh "Please make sure you've installed 'oh-my-zsh'."
+
+success "All good."
+
+# Override .zshrc
+# Override .vimrc
+# Override .aliases.rp
+# Override .alias
+# Override .custom.rp
+# Override .exports.rp
+# Override .oh-my-zsh/themes/honukai.zsh-theme
+
