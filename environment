@@ -10,6 +10,7 @@ WARNING=`tput setaf 3`
 INFO=`tput setaf 4`
 RESET=`tput sgr0`
 
+# Debug the application, sometimes.
 function debug {
 	if [ $DEBUG -eq 1 ]; then
 		MSG=$1
@@ -35,7 +36,7 @@ function success {
 	echo "${SUCCESS}${MSG}${RESET}"
 }
 
-# Print out a success message.
+# Print out a warning message.
 function warning {
 	MSG=$1
 	echo "${WARNING}${MSG}${RESET}"
@@ -155,6 +156,7 @@ function list {
 	echo -e "update\tUpdates the most important files with the new ones. ${WARNING}This will override important files.${RESET}"
 }
 
+# Target zsh and load it's configuration.
 function load_config {
 	zsh
 	source $WORKING_DIR/.zshrc
@@ -176,7 +178,7 @@ function update {
 	success "Your environment has been updated."
 }
 
-###############################
+################################
 
 case $ACTION in
 	init ) init; load_config;;
