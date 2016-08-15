@@ -1,5 +1,5 @@
 # Path to your oh-my-zsh installation.
-export ZSH=/Users/rafalproszowski/.oh-my-zsh
+export ZSH=${HOME}/.oh-my-zsh
 
 # Set name of the theme to load.
 # Look in ~/.oh-my-zsh/themes/
@@ -84,15 +84,14 @@ source $ZSH/oh-my-zsh.sh
 # alias ohmyzsh="mate ~/.oh-my-zsh"
 
 # Import the aliases functionality.
-source ~/.aliases.rp
+source ~/.aliases
 
 # Check if the exports file exists and then import it.
 if [ -e ~/.exports ]; then
-	source ~/.exports.rp
+	source ~/.exports
 fi
 
 # Check if the custom file exists and then import it.
 if [ -e ~/.custom ]; then
-	source ~/.custom.rp
+	source ~/.custom
 fi
-
