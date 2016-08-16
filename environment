@@ -105,7 +105,7 @@ function init {
 	cp -rf ./.zshrc $WORKING_DIR/.zshrc || exit 1
 	cp -rf ./.vimrc $WORKING_DIR/.vimrc || exit 1
 	cp -rf ./.aliases $WORKING_DIR/.aliases || exit 1
-	cp -Rf ./.alias $WORKING_DIR/.alias || exit 1
+	cp -Rf ./.alias $WORKING_DIR/ || exit 1
 	cp -rf ./.custom $WORKING_DIR/.custom || exit 1
 	cp -rf ./.exports $WORKING_DIR/.exports || exit 1
 	cp -rf ./.oh-my-zsh/themes/honukai.zsh-theme $WORKING_DIR/.oh-my-zsh/themes/honukai.zsh-theme || exit 1
@@ -138,9 +138,9 @@ function update {
 	cp -rf ./.zshrc $WORKING_DIR/.zshrc || exit 1
 	cp -rf ./.vimrc $WORKING_DIR/.vimrc || exit 1
 	cp -rf ./.aliases $WORKING_DIR/.aliases || exit 1
-	cp -R ./.alias $WORKING_DIR/.alias || exit 1
-	cp ./.custom $WORKING_DIR/.custom
-	cp ./.exports $WORKING_DIR/.exports
+	cp -Rn ./.alias $WORKING_DIR/ || exit 1
+	cp -n ./.custom $WORKING_DIR/.custom
+	cp -n ./.exports $WORKING_DIR/.exports
 	cp -rf ./.oh-my-zsh/themes/honukai.zsh-theme $WORKING_DIR/.oh-my-zsh/themes/honukai.zsh-theme || exit 1
 
 	success "Your environment has been updated."
@@ -153,3 +153,4 @@ case $ACTION in
 	update ) update; load_config;;
 	* ) list;
 esac
+
