@@ -16,10 +16,10 @@ function choose_environment() {
 function edit_alias() {
 	ALIAS=$1
 
-	if [ ALIAS ]; then
-		vi ${HOME}/.alias/${ALIAS}
-	else
+	if [[ -z "$ALIAS" ]]; then
 		vi ${HOME}/.aliases
+	else
+		vi ${HOME}/.alias/${ALIAS}
 	fi
 }
 
