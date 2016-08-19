@@ -95,6 +95,15 @@ function check_directory {
 	fi
 }
 
+# Configure terminator.
+function config_terminator {
+	info "Configuring Terminator"
+
+	cp -rf ./config.terminator $WORKING_DIR/.config/terminator/config || exit 1
+
+	info "Terminator has been configured. You may need to restart Terminator."
+}
+
 # Initialise the environment for the developer.
 function init {
 	info "Initialising environment."
@@ -150,6 +159,7 @@ function update {
 
 case $ACTION in
 	init ) init; load_config;;
+	terminator ) config_terminator; load_config;;
 	update ) update; load_config;;
 	* ) list;
 esac
