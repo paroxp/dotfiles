@@ -45,7 +45,7 @@ function go_to_project() {
 # Links #
 #########
 
-alias env='choose_environment'
+alias chenv='choose_environment'
 alias project='go_to_project'
 alias refresh='zsh && source ${HOME}/.zshrc'
 alias vialias='edit_alias'
