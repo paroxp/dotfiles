@@ -114,7 +114,7 @@ function init {
 	cp -rf ./.zshrc $WORKING_DIR/.zshrc || exit 1
 	cp -rf ./.vimrc $WORKING_DIR/.vimrc || exit 1
 	cp -rf ./.aliases $WORKING_DIR/.aliases || exit 1
-	cp -Rf ./.alias $WORKING_DIR/ || exit 1
+	cp -Rf ./.devenv $WORKING_DIR/ || exit 1
 	cp -rf ./.custom $WORKING_DIR/.custom || exit 1
 	cp -rf ./.exports $WORKING_DIR/.exports || exit 1
 	cp -rf ./.oh-my-zsh/themes/honukai.zsh-theme $WORKING_DIR/.oh-my-zsh/themes/honukai.zsh-theme || exit 1
@@ -128,6 +128,7 @@ function list {
 
 	echo -e "list\tLists any functionality covered by this application."
 	echo -e "init\tInitialises the developer environment. ${WARNING}This will override any existing setup!${RESET}"
+	echo -e "terminator\tSet's up the template for the terminator console."
 	echo -e "update\tUpdates the most important files with the new ones. ${WARNING}This will override important files.${RESET}"
 }
 
@@ -147,7 +148,7 @@ function update {
 	cp -rf ./.zshrc $WORKING_DIR/.zshrc || exit 1
 	cp -rf ./.vimrc $WORKING_DIR/.vimrc || exit 1
 	cp -rf ./.aliases $WORKING_DIR/.aliases || exit 1
-	cp -Rn ./.alias $WORKING_DIR/ || exit 1
+	cp -Rn ./.devenv $WORKING_DIR/ || exit 1
 	cp -n ./.custom $WORKING_DIR/.custom
 	cp -n ./.exports $WORKING_DIR/.exports
 	cp -rf ./.oh-my-zsh/themes/honukai.zsh-theme $WORKING_DIR/.oh-my-zsh/themes/honukai.zsh-theme || exit 1
