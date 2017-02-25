@@ -6,8 +6,6 @@
     ui = auto
 [push]
 	default = tracking
-[commit]
-	gpgsign = true
 
 # alias {{{
 [alias]
