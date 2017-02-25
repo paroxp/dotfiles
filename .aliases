@@ -4,12 +4,12 @@
 
 # Choose the environment to be loaded.
 function choose_environment() {
-	_ENV=$1
-	_CHOSEN=$HOME/.devenv/$_ENV
+    _ENV=$1
+    _CHOSEN=$HOME/.devenv/$_ENV
 
-	if [ -e  ${_CHOSEN} ]; then
-		source ${_CHOSEN}
-	fi
+    if [ -e  ${_CHOSEN} ]; then
+        source ${_CHOSEN}
+    fi
 }
 
 #########

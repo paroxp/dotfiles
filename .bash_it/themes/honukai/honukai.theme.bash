@@ -18,8 +18,8 @@ GIT_THEME_PROMPT_PREFIX="${SCM_THEME_PROMPT_PREFIX}"
 GIT_THEME_PROMPT_SUFFIX="${SCM_THEME_PROMPT_SUFFIX}"
 
 function prompt_command() {
-  # Prompt format: \n # USER at MACHINE in DIRECTORY on git:BRANCH STATE [TIME] \n $
-  PS1="\n${bold}${blue}#${reset_color} ${cyan}\u ${white}at ${green}${box_name:-\h} ${white}in ${bold}${yellow}\w${reset_color}$(scm_prompt_info) ${white}[\T]\n${bold}${red}→ ${reset_color}"
+    # Prompt format: \n # USER at MACHINE in DIRECTORY on git:BRANCH STATE [TIME] \n $
+    PS1="\n${bold}${blue}#${reset_color} ${cyan}\u ${white}at ${green}${box_name:-\h} ${white}in ${bold}${yellow}\w${reset_color}$(scm_prompt_info) ${white}[\T]\n${bold}${red}→ ${reset_color}"
 }
 
 safe_append_prompt_command prompt_command
