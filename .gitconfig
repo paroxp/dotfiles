@@ -1,9 +1,9 @@
 [core]
-	editor = /usr/bin/vim
+    editor = /usr/bin/vim
 [gpg]
-	program = gpg2
+    program = gpg2
 [color]
-	ui = auto
+    ui = auto
 [push]
 	default = tracking
 [commit]
@@ -126,11 +126,11 @@
     # }}}
 # }}}
 [rerere]
-  enabled = false
+    enabled = false
 [rebase]
-  autosquash = true
+    autosquash = true
 [filter "lfs"]
-	clean = git-lfs clean %f
-	smudge = git-lfs smudge %f
-	required = true
+    clean = git-lfs clean %f
+    smudge = git-lfs smudge %f
+    required = true
 
