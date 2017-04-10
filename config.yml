@@ -1,0 +1,12 @@
+---
+dependencies:
+  - name: git
+    type: command
+  - name: vim
+    type: command
+  - name: zsh
+    type: command
+  - name: oh-my-zsh
+    type: directory
+    path: /.oh-my-zsh
+    msg: Please make sure you've installed 'oh-my-zsh'.
