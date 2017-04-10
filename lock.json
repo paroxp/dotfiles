@@ -1,0 +1,37 @@
+{
+    "memo": "9f7c2b3fcd0141ba09973146dcadc238d6436cfdcc329a14b94b0a6af5dba6a2",
+    "projects": [
+        {
+            "name": "github.com/Sirupsen/logrus",
+            "branch": "master",
+            "revision": "a283a10442df8dc09befd873fab202bf8a253d6a",
+            "packages": [
+                "."
+            ]
+        },
+        {
+            "name": "github.com/prometheus/common",
+            "branch": "master",
+            "revision": "ebdfc6da46522d58825777cf1f90490a5b1ef1d8",
+            "packages": [
+                "log"
+            ]
+        },
+        {
+            "name": "golang.org/x/sys",
+            "branch": "master",
+            "revision": "f3918c30c5c2cb527c0b071a27c35120a6c0719a",
+            "packages": [
+                "unix"
+            ]
+        },
+        {
+            "name": "gopkg.in/yaml.v2",
+            "branch": "v2",
+            "revision": "a3f3340b5840cee44f372bddb5880fcbc419b46a",
+            "packages": [
+                "."
+            ]
+        }
+    ]
+}

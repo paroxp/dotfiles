@@ -1,0 +1,13 @@
+{
+    "dependencies": {
+        "github.com/Sirupsen/logrus": {
+            "branch": "v0.11.5"
+        },
+        "github.com/prometheus/common": {
+            "branch": "master"
+        },
+        "gopkg.in/yaml.v2": {
+            "branch": "v2"
+        }
+    }
+}
