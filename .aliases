@@ -17,7 +17,6 @@ function choose_environment() {
 #########
 
 alias chenv='choose_environment'
-alias refresh='zsh && source ${HOME}/.zshrc'
 
 # Auto load
 source ${HOME}/.devenv/default
