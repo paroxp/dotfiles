@@ -95,6 +95,15 @@ function check_directory {
     fi
 }
 
+# Configure Konsole.
+function config_konsole {
+    info "Configuring Konsole"
+
+    cp -rf ./konsole/Honukai.* "${WORKING_DIR}/.local/share/konsole" || exit 1
+
+    info "Konsole has been configured. You may need to restart Konsole and make Honukai your default profile."
+}
+
 # Configure terminator.
 function config_terminator {
     info "Configuring Terminator"
@@ -170,6 +179,7 @@ function update {
 case $ACTION in
     init ) init; load_config;;
     terminator ) install_fira_sans; config_terminator; load_config;;
+    konsole ) config_konsole; load_config;;
     update ) update; load_config;;
     fira ) install_fira_sans;;
     * ) list;
