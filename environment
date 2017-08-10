@@ -1,5 +1,5 @@
-#!/usr/bin/env bash
-
+#!/bin/bash
+asda
 ACTION=$1
 DEBUG=0
 WORKING_DIR=$HOME
@@ -133,8 +133,11 @@ function init {
 
 # Install fira sans fonts, required by the honukai.
 function install_fira_sans {
-    wget https://github.com/mozilla/Fira/archive/master.zip
-    unzip master.zip
+    if [ ! -d Fira-master/ ]; then
+      wget https://github.com/mozilla/Fira/archive/master.zip
+      unzip master.zip
+    fi
+
     sudo mkdir -p /usr/share/fonts/truetype/fira
     sudo cp Fira-master/ttf/* /usr/share/fonts/truetype/fira
 }
@@ -179,9 +182,8 @@ function update {
 case $ACTION in
     init ) init; load_config;;
     terminator ) install_fira_sans; config_terminator; load_config;;
-    konsole ) config_konsole; load_config;;
+    konsole ) install_fira_sans; config_konsole; load_config;;
     update ) update; load_config;;
     fira ) install_fira_sans;;
     * ) list;
 esac
-

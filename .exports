@@ -1,0 +1,19 @@
+GPG_AGENT="$(which gpg-agent)"
+GPG_TTY="$(tty)"
+
+export AWS_DEFAULT_REGION="eu-west-1"
+export AWS_DEFAULT_OUTPUT="json"
+export EDITOR=vim
+export GOPATH=$HOME/golang
+export GPG_TTY GPG_AGENT
+export PINENTRY_USER_DATA="USE_CURSES=1"
+
+# shellcheck disable=SC2039
+path=(
+    $path
+    "${HOME}/.bin"
+)
+
+typeset -U path
+
+echo -n "."

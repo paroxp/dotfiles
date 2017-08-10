@@ -1,3 +1,5 @@
+[user]
+    name = Rafal Proszowski
 [core]
     editor = /usr/bin/vim
 [gpg]
@@ -131,4 +133,3 @@
     clean = git-lfs clean %f
     smudge = git-lfs smudge %f
     required = true
-

@@ -38,6 +38,13 @@ ys_hg_prompt_info() {
 	fi
 }
 
+local environment='$(env_info)'
+env_info() {
+    if [ ! -z ${_ENVIRONMENT:-} ]; then
+        echo -n "\U0001F41D  ${_ENVIRONMENT} "
+    fi
+}
+
 # Prompt format: \n # USER at MACHINE in DIRECTORY on git:BRANCH STATE [TIME] \n $
 PROMPT="
 %{$terminfo[bold]$fg[blue]%}#%{$reset_color%} \
@@ -46,9 +53,9 @@ PROMPT="
 %{$fg[green]%}$(box_name) \
 %{$fg[white]%}in \
 %{$terminfo[bold]$fg[yellow]%}${current_dir}%{$reset_color%}\
-${hg_info}\
 ${git_info} \
 %{$fg[white]%}[%*]
+%{$fg[red]%}${environment}\
 %{$terminfo[bold]$fg[red]%}→ %{$reset_color%}"
 
 if [[ "$USER" == "root" ]]; then
@@ -62,6 +69,6 @@ PROMPT="
 ${hg_info}\
 ${git_info} \
 %{$fg[white]%}[%*]
+%{$fg[red]%}${environment}\
 %{$terminfo[bold]$fg[red]%}→ %{$reset_color%}"
 fi
-
