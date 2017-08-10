@@ -6,6 +6,7 @@ export ZSH=${HOME}/.oh-my-zsh
 # Optionally, if you set this to "random", it'll load a random theme each
 # time that oh-my-zsh is loaded.
 ZSH_THEME="honukai"
+setopt no_global_rcs
 
 # Uncomment the following line to use case-sensitive completion.
 # CASE_SENSITIVE="true"
@@ -49,7 +50,7 @@ ZSH_THEME="honukai"
 # Custom plugins may be added to ~/.oh-my-zsh/custom/plugins/
 # Example format: plugins=(rails git textmate ruby lighthouse)
 # Add wisely, as too many plugins slow down shell startup.
-plugins=(git)
+plugins=(brew colorize git gitfast z)
 
 # User configuration
 
@@ -83,6 +84,11 @@ source $ZSH/oh-my-zsh.sh
 # alias zshconfig="mate ~/.zshrc"
 # alias ohmyzsh="mate ~/.oh-my-zsh"
 
+# Check if the custom file exists and then import it.
+if [ -e ~/.custom ]; then
+	source ~/.custom
+fi
+
 # Import the aliases functionality.
 source ~/.aliases
 
@@ -91,7 +97,10 @@ if [ -e ~/.exports ]; then
 	source ~/.exports
 fi
 
-# Check if the custom file exists and then import it.
-if [ -e ~/.custom ]; then
-	source ~/.custom
+echo ""
+
+# Check if there is a reminder in place and display it in the shell.
+if [ -e ~/.reminder ] && [ "$(cat ~/.reminder)" != "" ]; then
+    printf "\n!!! Reminder !!!\n"
+    cat ~/.reminder
 fi
