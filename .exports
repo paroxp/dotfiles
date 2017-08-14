@@ -1,8 +1,8 @@
 GPG_AGENT="$(which gpg-agent)"
 GPG_TTY="$(tty)"
 
-export AWS_DEFAULT_REGION="eu-west-1"
 export AWS_DEFAULT_OUTPUT="json"
+export AWS_DEFAULT_REGION="eu-west-1"
 export EDITOR=vim
 export GOPATH=$HOME/golang
 export GPG_TTY GPG_AGENT
@@ -11,9 +11,19 @@ export PINENTRY_USER_DATA="USE_CURSES=1"
 # shellcheck disable=SC2039
 path=(
     $path
+    "${GOPATH}/bin"
+    "${GOROOT}/bin"
     "${HOME}/.bin"
 )
 
-typeset -U path
+compdef _pass paas-pass
+zstyle ':completion::complete:paas-pass::' prefix "${HOME}/.paas-pass"
+paas-pass() {
+  PASSWORD_STORE_DIR="${HOME}/.paas-pass" pass "${@}"
+}
 
-echo -n "."
+compdef _pass paas-pass-high
+zstyle ':completion::complete:paas-pass-high::' prefix "${HOME}/.paas-pass-high"
+paas-pass-high() {
+  PASSWORD_STORE_DIR="${HOME}/.paas-pass-high" pass "${@}"
+}

@@ -1,12 +1,13 @@
-# Path to your oh-my-zsh installation.
 export ZSH=${HOME}/.oh-my-zsh
+setopt no_global_rcs
+setopt interactive_comments
+setopt dotglob
 
 # Set name of the theme to load.
 # Look in ~/.oh-my-zsh/themes/
 # Optionally, if you set this to "random", it'll load a random theme each
 # time that oh-my-zsh is loaded.
-ZSH_THEME="honukai"
-setopt no_global_rcs
+export ZSH_THEME="rafal"
 
 # Uncomment the following line to use case-sensitive completion.
 # CASE_SENSITIVE="true"
@@ -50,14 +51,15 @@ setopt no_global_rcs
 # Custom plugins may be added to ~/.oh-my-zsh/custom/plugins/
 # Example format: plugins=(rails git textmate ruby lighthouse)
 # Add wisely, as too many plugins slow down shell startup.
-plugins=(brew colorize git gitfast z)
+# plugins=(brew colorize git gitfast z)
 
 # User configuration
 
 # export PATH="/usr/bin:/bin:/usr/sbin:/sbin:$PATH"
 # export MANPATH="/usr/local/man:$MANPATH"
 
-source $ZSH/oh-my-zsh.sh
+# shellcheck source=/dev/null
+source "${ZSH}/oh-my-zsh.sh"
 
 # You may need to manually set your language environment
 # export LANG=en_US.UTF-8
@@ -85,22 +87,23 @@ source $ZSH/oh-my-zsh.sh
 # alias ohmyzsh="mate ~/.oh-my-zsh"
 
 # Check if the custom file exists and then import it.
-if [ -e ~/.custom ]; then
-	source ~/.custom
+if [ -e ~/.dot/.custom ]; then
+  # shellcheck source=/dev/null
+  source ~/.dot/.custom
 fi
 
 # Import the aliases functionality.
-source ~/.aliases
+# shellcheck source=/dev/null
+source ~/.dot/.aliases
 
 # Check if the exports file exists and then import it.
-if [ -e ~/.exports ]; then
-	source ~/.exports
+if [ -e ~/.dot/.exports ]; then
+  # shellcheck source=/dev/null
+  source ~/.dot/.exports
 fi
 
-echo ""
-
 # Check if there is a reminder in place and display it in the shell.
-if [ -e ~/.reminder ] && [ "$(cat ~/.reminder)" != "" ]; then
-    printf "\n!!! Reminder !!!\n"
-    cat ~/.reminder
+if [ -e ~/.dot/.reminder ] && [ "$(cat ~/.dot/.reminder)" != "" ]; then
+  printf "\n!!! Reminder !!!\n"
+  cat ~/.dot/.reminder
 fi
