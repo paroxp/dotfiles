@@ -1,20 +1,16 @@
-# if [ -n "$ZSH_VERSION" ]; then
-# 	autoload -U compinit && compinit
-# fi
-
 # Choose the environment to be loaded.
 choose_environment() {
-	_ENV=$1
-	_CHOSEN=$HOME/.devenv/$_ENV
+    _ENV=$1
+    _CHOSEN=$HOME/.dot/env/$_ENV
 
-	if [ -e "${_CHOSEN}" ]; then
+    if [ -e "${_CHOSEN}" ]; then
         # shellcheck source=/dev/null
-		source "${_CHOSEN}"
+        source "${_CHOSEN}"
 
         echo "Switched to '$_ENV'."
     else
         echo "The '$_ENV' environment does not exist..."
-	fi
+    fi
 
     if [ "${DANGER:=false}" = "true" ]; then
         tab_color 229 102 61
@@ -35,4 +31,3 @@ tab_reset() {
     echo -ne "\033]6;1;bg;*;default\a"
 }
 
-echo -n "."
