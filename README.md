@@ -46,13 +46,13 @@ We're not linking them. These aren't going to change so often...
 
 ```sh
 mkdir -p ~/.config/terminator
-cp -rf ./config.terminator "${WORKING_DIR}/.config/terminator/config"
+cp -rf ~/.dot/config.terminator "~/.config/terminator/config"
 ```
 
 #### Konsole
 
 ```sh
 mkdir -p ~/.local/share/konsole
-cp -rf ./konsole/Honukai.* "${WORKING_DIR}/.local/share/konsole"
+cp -rf ~/.dot/konsole/Honukai.* "~/.local/share/konsole"
 ```
 
