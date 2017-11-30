@@ -1,0 +1,25 @@
+AWS_ACCESS_KEY_ID=$(pass dev/aws/access_key)
+AWS_SECRET_ACCESS_KEY=$(pass dev/aws/secret_access_key)
+COMPOSE_API_KEY=$(pass dev/compose/api_key)
+PIVOTAL_TRACKER_API_TOKEN=$(pass dev/pivotal/tracker_token)
+PAGERDUTY_AUTHTOKEN=$(pass dev/pagerduty/authtoken)
+
+export _ENVIRONMENT=dev
+
+export AWS_ACCOUNT=${_ENVIRONMENT}
+export AWS_ACCESS_KEY_ID AWS_SECRET_ACCESS_KEY COMPOSE_API_KEY PIVOTAL_TRACKER_API_TOKEN PAGERDUTY_AUTHTOKEN
+export TMOUT=3600
+export DEPLOY_ENV=rafalp
+export BRANCH=master
+export API="https://api.${DEPLOY_ENV}.dev.cloudpipeline.digital"
+export SKIP_SSL_VALIDATION=--skip-ssl-validation
+unset DANGER
+export ENABLE_DATADOG=false
+export ENABLE_CVE_NOTIFIER=false
+export ENABLE_PAAS_DASHBOARD=false
+
+# Request new AWS STS tokens.
+rat
+
+tab_reset
+

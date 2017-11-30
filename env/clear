@@ -1,0 +1,24 @@
+unset _ENVIRONMENT
+
+unset AWS_ACCOUNT
+unset AWS_ACCESS_KEY_ID
+unset AWS_SECRET_ACCESS_KEY
+unset TMOUT
+unset DEPLOY_ENV
+unset BRANCH
+unset API
+unset SKIP_SSL_VALIDATION
+unset DANGER
+unset ENABLE_DATADOG
+unset ENABLE_CVE_NOTIFIER
+unset ENABLE_PAAS_DASHBOARD
+
+# Request new AWS STS tokens.
+# rat
+
+alias cf-pipelines='make prod pipelines'
+alias cf-bootstrap='make prod deployer-concourse bootstrap'
+
+alias cf-login='cf login --sso'
+
+tab_reset
