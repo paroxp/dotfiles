@@ -41,7 +41,7 @@ ys_hg_prompt_info() {
 local environment='$(env_info)'
 env_info() {
     if [ ! -z ${_ENVIRONMENT:-} ]; then
-        echo -n "\U0001F41D  ${_ENVIRONMENT} "
+        echo -n "${_ENVIRONMENT} "
     fi
 }
 
