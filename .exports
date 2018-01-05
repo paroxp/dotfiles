@@ -13,6 +13,7 @@ path=(
     $path
     "${GOPATH}/bin"
     "${GOROOT}/bin"
+    "${HOME}/.local/bin"
     "${HOME}/.bin"
 )
 
