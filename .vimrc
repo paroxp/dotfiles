@@ -1,4 +1,4 @@
-" vim-bootstrap 32075a8
+" vim-bootstrap 5268b45
 
 "*****************************************************************************
 "" Vim-PLug core
@@ -146,7 +146,7 @@ set ttyfast
 "" Fix backspace indent
 set backspace=indent,eol,start
 
-"" Tabs. May be overriten by autocmd rules
+"" Tabs. May be overridden by autocmd rules
 set tabstop=4
 set softtabstop=0
 set shiftwidth=4
@@ -213,7 +213,7 @@ else
   let g:indentLine_char = '┆'
   let g:indentLine_faster = 1
 
-
+  
   if $COLORTERM == 'gnome-terminal'
     set term=gnome-256color
   else
@@ -221,7 +221,7 @@ else
       set term=xterm-256color
     endif
   endif
-
+  
 endif
 
 
@@ -289,7 +289,7 @@ let g:NERDTreeMapOpenInTabSilent = '<RightMouse>'
 let g:NERDTreeWinSize = 50
 set wildignore+=*/tmp/*,*.so,*.swp,*.zip,*.pyc,*.db,*.sqlite
 nnoremap <silent> <F2> :NERDTreeFind<CR>
-noremap <F3> :NERDTreeToggle<CR>
+nnoremap <silent> <F3> :NERDTreeToggle<CR>
 
 " grep.vim
 nnoremap <silent> <leader>f :Rgrep<CR>
@@ -488,7 +488,7 @@ nnoremap <Leader>o :.Gbrowse<CR>
 function! s:build_go_files()
   let l:file = expand('%')
   if l:file =~# '^\f\+_test\.go$'
-    call go#cmd#Test(0, 1)
+    call go#test#Test(0, 1)
   elseif l:file =~# '^\f\+\.go$'
     call go#cmd#Build(0)
   endif
@@ -540,7 +540,9 @@ augroup go
   au FileType go nmap <Leader>i <Plug>(go-info)
   au FileType go nmap <silent> <Leader>l <Plug>(go-metalinter)
   au FileType go nmap <C-g> :GoDecls<cr>
+  au FileType go nmap <leader>dr :GoDeclsDir<cr>
   au FileType go imap <C-g> <esc>:<C-u>GoDecls<cr>
+  au FileType go imap <leader>dr <esc>:<C-u>GoDeclsDir<cr>
   au FileType go nmap <leader>rb :<C-u>call <SID>build_go_files()<CR>
 
 augroup END
