@@ -23,36 +23,30 @@ into our home directory. It gives us more control.
 ### Link base files
 
 ```sh
-ln -s ~/.dot/.zshrc ~/.zshrc
-ln -s ~/.dot/.vimrc ~/.vimrc
-ln -s ~/.dot/.gitconfig ~/.gitconfig
+ln -sf ~/.dot/.zshrc ~/.zshrc
+ln -sf ~/.dot/.vimrc ~/.vimrc
+ln -sf ~/.dot/.gitconfig ~/.gitconfig
 ```
 
 ### Link `.oh-my-zsh` theme
 
 ```sh
-ln -s ~/.dot/.oh-my-zsh/themes/rafal.zsh-theme ~/.oh-my-zsh/themes/rafal.zsh-theme
+ln -sf ~/.dot/.oh-my-zsh/themes/rafal.zsh-theme ~/.oh-my-zsh/themes/rafal.zsh-theme
 ```
 
 This is greatly based on
 [Honukai](https://github.com/oskarkrawczyk/honukai-iterm-zsh) theme, with minor
 changes to suit my needs in a better way. Credit is due :)
 
-### Copy optional terminal config files
-
-We're not linking them. These aren't going to change so often...
-
 #### Terminator
 
 ```sh
-mkdir -p ~/.config/terminator
-cp -rf ~/.dot/config.terminator "~/.config/terminator/config"
+ln -sf ~/.dot/.config/terminator ~/.config/terminator
 ```
 
 #### Konsole
 
 ```sh
-mkdir -p ~/.local/share/konsole
-cp -rf ~/.dot/konsole/Honukai.* "~/.local/share/konsole"
+ln -sf ~/.dot/.local/share/konsole ~/.local/share/konsole
 ```
 
