@@ -21,18 +21,17 @@ color7 = ${xrdb:color7}
 
 [bar/top]
 monitor = ${env:MONITOR:eDP1}
-width = 98%
 height = 40
-radius = 4.0
 
 background = ${colors.background}
 foreground = ${colors.foreground}
 
-border-left-size = 35 # margin left
-border-top-size = 15
+border-left-size = 9 # margin left
+border-right-size = 9 # margin right
+border-top-size = 9
 
 padding-left = 0
-padding-right = 3
+padding-right = 2
 
 module-margin-left = 1
 module-margin-right = 1
@@ -43,9 +42,7 @@ font-2 = Unifont:size=10;3
 
 modules-left = i3
 modules-center = xwindow music
-modules-right = imgur xbacklight volume wifi ethernet battery date power_menu
-
-# tray-padding = 0
+modules-right = imgur volume wifi ethernet battery date power_menu
 
 # Module for window title
 [module/xwindow]
@@ -137,7 +134,7 @@ type = internal/date
 interval = 1
 format-prefix = "  "
 format-prefix-foreground = ${colors.color4}
-date = %b %d %H:%M:%S
+date = %b %d %H:%M
 label = %date%
 
 # Module for volume
@@ -197,9 +194,7 @@ menu-0-0 = "  Power Off "
 menu-0-0-exec = shutdown now
 menu-0-1 = "  Reboot "
 menu-0-1-exec = reboot
-menu-0-2 = "  Logout "
-menu-0-2-exec = logout
-menu-0-3 =  "  Cancel"
+menu-0-2 =  "  Cancel"
 label-open = 
 label-close =
 
@@ -214,6 +209,3 @@ exec = ~/.config/polybar/scripts/music
 [settings]
 screenchange-reload = true
 
-[global/wm]
-margin-top = 5
-margin-bottom = 5
