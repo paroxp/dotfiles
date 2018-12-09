@@ -26,16 +26,17 @@ bindsym $mod+c kill
 
 # start dmenu (a program launcher)
 bindsym $mod+d exec --no-startup-id rofi -show run
+bindsym Ctrl+Space exec --no-startup-id rofi -show window
 # There also is the (new) i3-dmenu-desktop which only displays applications
 # shipping a .desktop file. It is a wrapper around dmenu, so you need that
 # installed.
 # bindsym $mod+d exec --no-startup-id i3-dmenu-desktop
 
 # change focus
-bindsym $mod+j focus left
-bindsym $mod+k focus down
-bindsym $mod+l focus up
-bindsym $mod+semicolon focus right
+bindsym $mod+h focus left
+bindsym $mod+j focus down
+bindsym $mod+k focus up
+bindsym $mod+l focus right
 
 # alternatively, you can use the cursor keys:
 bindsym $mod+Left focus left
@@ -44,10 +45,10 @@ bindsym $mod+Up focus up
 bindsym $mod+Right focus right
 
 # move focused window
-bindsym $mod+Shift+j move left
-bindsym $mod+Shift+k move down
-bindsym $mod+Shift+l move up
-bindsym $mod+Shift+semicolon move right
+bindsym $mod+Shift+h move left
+bindsym $mod+Shift+j move down
+bindsym $mod+Shift+k move up
+bindsym $mod+Shift+l move right
 
 # alternatively, you can use the cursor keys:
 bindsym $mod+Shift+Left move left
@@ -56,7 +57,7 @@ bindsym $mod+Shift+Up move up
 bindsym $mod+Shift+Right move right
 
 # split in horizontal orientation
-bindsym $mod+h split h
+bindsym $mod+Shift+v split h
 
 # split in vertical orientation
 bindsym $mod+v split v
@@ -120,10 +121,10 @@ mode "resize" {
         # Pressing right will grow the window’s width.
         # Pressing up will shrink the window’s height.
         # Pressing down will grow the window’s height.
-        bindsym j resize shrink width 10 px or 10 ppt
-        bindsym k resize grow height 10 px or 10 ppt
-        bindsym l resize shrink height 10 px or 10 ppt
-        bindsym semicolon resize grow width 10 px or 10 ppt
+        bindsym h resize shrink width 10 px or 10 ppt
+        bindsym j resize grow height 10 px or 10 ppt
+        bindsym k resize shrink height 10 px or 10 ppt
+        bindsym l resize grow width 10 px or 10 ppt
 
         # same bindings, but for the arrow keys
         bindsym Left resize shrink width 10 px or 10 ppt
@@ -149,21 +150,19 @@ exec --no-startup-id nm-applet
 # Remove blue window bar i3 uses
 for_window [class="^.*"] border pixel 0
 
-# Gaps
-gaps inner 5
-gaps outer 5
-
 # Background image
-exec_always feh -z ~/Pictures/Wallpapers/* -D600 --bg-fill
+exec_always feh --randomize --slideshow-delay=600 --bg-fill ~/Pictures/Wallpapers --no-fehbg
 
 # Volume Controls
-bindsym XF86AudioRaiseVolume exec --no-startup-id pactl -- set-sink-volume 0 +5% #increase sound volume
-bindsym XF86AudioLowerVolume exec --no-startup-id pactl -- set-sink-volume 0 -5% #decrease sound volume
-bindsym XF86AudioMute exec --no-startup-id pactl set-sink-mute 0 toggle # mute sound
+bindsym XF86AudioLowerVolume exec /usr/bin/pactl set-sink-volume @DEFAULT_SINK@ '-5%'
+bindsym XF86AudioRaiseVolume exec /usr/bin/pactl set-sink-volume @DEFAULT_SINK@ '+5%'
+bindsym XF86AudioMute exec /usr/bin/pactl set-sink-mute @DEFAULT_SINK@ toggle
 
 # Sreen brightness controls
 bindsym XF86MonBrightnessUp exec xbacklight -inc 10 # increase screen brightness
 bindsym XF86MonBrightnessDown exec xbacklight -dec 10 # decrease screen brightness
+
+bindsym XF86Battery exec gnome-power-statistics
 
 exec compton
 
@@ -171,7 +170,7 @@ exec compton
 bindsym $mod+shift+x exec i3lock-next "Enter Password To Unlock ..." "Fira Mono Medium" 24
 
 assign [class="^Termite$"] 1
-assign [class="^Firefox$"] 2
+assign [class="[Chrome,Firefox]"] 2
 assign [class="^Slack$"] 4
 assign [class="^Thunar$"] 5
 
@@ -180,7 +179,7 @@ assign [class="Toolbox"] 3
 # Toolbox
 
 for_window [class="^Spotify$"] move to workspace 10
-for_window [class="^Atom$"] move to workspace 3
+for_window [class="^Code$"] move to workspace 3
 
 focus_follows_mouse no
 
