@@ -4,57 +4,26 @@ set $mod Mod4
 # is used in the bar {} block below.
 font pango:Fira Sans Mono, FuraMono Nerd Font Mono, monospace, Terminus 8
 
-# This font is widely installed, provides lots of unicode glyphs, right-to-left
-# text rendering and scalability on retina/hidpi displays (thanks to pango).
-#font pango:DejaVu Sans Mono 8
-
-# Before i3 v4.8, we used to recommend this one as the default:
-# font -misc-fixed-medium-r-normal--13-120-75-75-C-70-iso10646-1
-# The font above is very space-efficient, that is, it looks good, sharp and
-# clear in small sizes. However, its unicode glyph coverage is limited, the old
-# X core fonts rendering does not support right-to-left and this being a bitmap
-# font, it doesn’t scale on retina/hidpi displays.
-
-# Use Mouse+$mod to drag floating windows to their wanted position
 floating_modifier $mod
 
-# start a terminal
 bindsym $mod+Return exec termite
 
-# kill focused window
-bindsym $mod+c kill
+bindsym $mod+Shift+q kill
 
-# start dmenu (a program launcher)
-bindsym $mod+d exec --no-startup-id rofi -show run
-bindsym Ctrl+Space exec --no-startup-id rofi -show window
-# There also is the (new) i3-dmenu-desktop which only displays applications
-# shipping a .desktop file. It is a wrapper around dmenu, so you need that
-# installed.
-# bindsym $mod+d exec --no-startup-id i3-dmenu-desktop
+bindsym $mod+d   exec --no-startup-id rofi -show run
+bindsym $mod+Tab exec --no-startup-id rofi -show window
 
 # change focus
-bindsym $mod+h focus left
-bindsym $mod+j focus down
-bindsym $mod+k focus up
-bindsym $mod+l focus right
-
-# alternatively, you can use the cursor keys:
-bindsym $mod+Left focus left
-bindsym $mod+Down focus down
-bindsym $mod+Up focus up
-bindsym $mod+Right focus right
+bindsym $mod+j         focus left
+bindsym $mod+k         focus down
+bindsym $mod+l         focus up
+bindsym $mod+semicolon focus right
 
 # move focused window
-bindsym $mod+Shift+h move left
-bindsym $mod+Shift+j move down
-bindsym $mod+Shift+k move up
-bindsym $mod+Shift+l move right
-
-# alternatively, you can use the cursor keys:
-bindsym $mod+Shift+Left move left
-bindsym $mod+Shift+Down move down
-bindsym $mod+Shift+Up move up
-bindsym $mod+Shift+Right move right
+bindsym $mod+Shift+j         move left
+bindsym $mod+Shift+k         move down
+bindsym $mod+Shift+l         move up
+bindsym $mod+Shift+semicolon move right
 
 # split in horizontal orientation
 bindsym $mod+Shift+v split h
@@ -76,11 +45,9 @@ bindsym $mod+Shift+space floating toggle
 # change focus between tiling / floating windows
 bindsym $mod+space focus mode_toggle
 
-# focus the parent container
+# focus the parent or child container
 bindsym $mod+a focus parent
-
-# focus the child container
-#bindsym $mod+d focus child
+bindsym $mod+Shift+a focus child
 
 # switch to workspace
 bindsym $mod+1 workspace 1
@@ -110,81 +77,70 @@ bindsym $mod+Shift+0 move container to workspace 10
 bindsym $mod+Shift+c reload
 # restart i3 inplace (preserves your layout/session, can be used to upgrade i3)
 bindsym $mod+Shift+r restart
-# exit i3 (logs you out of your X session)
-bindsym $mod+Shift+e exec "i3-nagbar -t warning -m 'You pressed the exit shortcut. Do you really want to exit i3? This will end your X session.' -b 'Yes, exit i3' 'i3-msg exit'"
+
+# manage the system session
+mode "$mode_system" {
+    bindsym l exec --no-startup-id ~/.config/i3/i3exit lock, mode "default"
+    bindsym s exec --no-startup-id ~/.config/i3/i3exit suspend, mode "default"
+    bindsym e exec --no-startup-id ~/.config/i3/i3exit logout, mode "default"
+    bindsym h exec --no-startup-id ~/.config/i3/i3exit hibernate, mode "default"
+    bindsym r exec --no-startup-id ~/.config/i3/i3exit reboot, mode "default"
+    bindsym Shift+s exec --no-startup-id ~/.config/i3/i3exit shutdown, mode "default"
+
+    bindsym Return mode "default"
+    bindsym Escape mode "default"
+}
+
+bindsym $mod+Escape mode "$mode_system"
+set $mode_system (l)ock, (e)xit, (s)uspend, (h)ibernate, (r)eboot, (Shift+s)hutdown
+
+# Lock screen keyboardX
+bindsym $mod+Shift+x exec sh ~/.config/i3/i3lock/lock.sh
 
 # resize window (you can also use the mouse for that)
 mode "resize" {
         # These bindings trigger as soon as you enter the resize mode
+        bindsym j         resize shrink width  10 px or 10 ppt
+        bindsym k         resize grow   height 10 px or 10 ppt
+        bindsym l         resize shrink height 10 px or 10 ppt
+        bindsym semicolon resize grow   width  10 px or 10 ppt
 
-        # Pressing left will shrink the window’s width.
-        # Pressing right will grow the window’s width.
-        # Pressing up will shrink the window’s height.
-        # Pressing down will grow the window’s height.
-        bindsym h resize shrink width 10 px or 10 ppt
-        bindsym j resize grow height 10 px or 10 ppt
-        bindsym k resize shrink height 10 px or 10 ppt
-        bindsym l resize grow width 10 px or 10 ppt
-
-        # same bindings, but for the arrow keys
-        bindsym Left resize shrink width 10 px or 10 ppt
-        bindsym Down resize grow height 10 px or 10 ppt
-        bindsym Up resize shrink height 10 px or 10 ppt
-        bindsym Right resize grow width 10 px or 10 ppt
-
-        # back to normal: Enter or Escape
         bindsym Return mode "default"
         bindsym Escape mode "default"
 }
 
 bindsym $mod+r mode "resize"
 
-# Start i3bar to display a workspace bar (plus the system information i3status
-# finds out, if available)
 bar {
     i3bar_command $HOME/.config/polybar/launch.sh
 }
 
-exec --no-startup-id nm-applet
-
 # Remove blue window bar i3 uses
 for_window [class="^.*"] border pixel 0
-
-# Background image
-exec_always feh --randomize --slideshow-delay=600 --bg-fill ~/Pictures/Wallpapers --no-fehbg
 
 # Volume Controls
 bindsym XF86AudioLowerVolume exec /usr/bin/pactl set-sink-volume @DEFAULT_SINK@ '-5%'
 bindsym XF86AudioRaiseVolume exec /usr/bin/pactl set-sink-volume @DEFAULT_SINK@ '+5%'
-bindsym XF86AudioMute exec /usr/bin/pactl set-sink-mute @DEFAULT_SINK@ toggle
+bindsym XF86AudioMute        exec /usr/bin/pactl set-sink-mute   @DEFAULT_SINK@ toggle
 
 # Sreen brightness controls
-bindsym XF86MonBrightnessUp exec xbacklight -inc 10 # increase screen brightness
+bindsym XF86MonBrightnessUp   exec xbacklight -inc 10 # increase screen brightness
 bindsym XF86MonBrightnessDown exec xbacklight -dec 10 # decrease screen brightness
 
 bindsym XF86Battery exec gnome-power-statistics
 
-exec compton
-
-# Lock screen keyboardX
-bindsym $mod+shift+x exec i3lock-next "Enter Password To Unlock ..." "Fira Mono Medium" 24
-
 assign [class="^Termite$"] 1
 assign [class="[Chrome,Firefox]"] 2
 assign [class="^Slack$"] 4
-assign [class="^Thunar$"] 5
-
 assign [class="Toolbox"] 3
 
 # Toolbox
 
-for_window [class="^Spotify$"] move to workspace 10
 for_window [class="^Code$"] move to workspace 3
+for_window [class="^Thunar$"] move to workspace 5
+for_window [class="^Spotify$"] move to workspace 10
 
 focus_follows_mouse no
-
-exec --no-startup-id dunst
-exec --no-startup-id synclient TapButton1=1
 
 # Media player controls
 bindsym XF86AudioPlay exec playerctl play-pause
@@ -192,3 +148,10 @@ bindsym XF86AudioPlay exec playerctl play-pause
 bindsym XF86AudioStop exec playerctl stop
 bindsym XF86AudioNext exec playerctl next
 bindsym XF86AudioPrev exec playerctl previous
+
+# startup programs
+exec_always --no-startup-id feh --randomize --slideshow-delay=600 --bg-fill ~/Pictures/Wallpapers --no-fehbg
+exec --no-startup-id compton
+exec --no-startup-id nm-applet
+exec --no-startup-id dunst
+exec --no-startup-id synclient TapButton1=1
