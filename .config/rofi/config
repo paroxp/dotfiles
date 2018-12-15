@@ -24,13 +24,13 @@ rofi.fullscreen:         false
 ! ------------------------------------------------------------------------------
 
 !				   'background', 'border', 'separator'
-rofi.color-window: #261f39,      #03cbca,  #d90e79
+rofi.color-window: #261f39,      #babcc8,  #babcc8
 
 
 ! State:           'bg',     'fg',     'bgalt',  'hlbg',   'hlfg'
-rofi.color-normal: #261f39,  #f1f1f1,  #261f39,  #03cbca,  #f1f1f1
-rofi.color-urgent: #d90e79,  #f1f1f1,  #261f39,  #03cbca,  #f1f1f1
-rofi.color-active: #57c7ff,  #f1f1f1,  #57c7ff,  #03cbca,  #f1f1f1
+rofi.color-normal: #261f39,  #babcc8,  #261f39,  #2670fc,  #babcc8
+rofi.color-urgent: #dd5030,  #babcc8,  #dd5030,  #03cbca,  #babcc8
+rofi.color-active: #6cbd3a,  #babcc8,  #6cbd3a,  #03cbca,  #babcc8
 
 rofi.ssh-client:ssh
 rofi.ssh-command:          {termite} -e "{ssh-client} {host}"

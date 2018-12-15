@@ -1,5 +1,7 @@
 [options]
 
+size_hints = false
+
 browser = firefox
 clickable_url = true
 font = Fira Mono Medium Medium 13
