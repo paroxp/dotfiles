@@ -4,7 +4,7 @@
 [core]
     editor = /usr/bin/vim
 [gpg]
-    program = gpg2
+    program = gpg
 [color]
     ui = auto
 [push]
@@ -90,6 +90,7 @@
     # last tag created
     lasttag = describe --tags --abbrev=0
     lt = describe --tags --abbrev=0
+    pushf = push --force-with-lease
 
     # conflict/merges
     ours = "!f() { git co --ours $@ && git add $@; }; f"

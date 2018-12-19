@@ -2,19 +2,22 @@ GPG_AGENT="$(which gpg-agent)"
 GPG_TTY="$(tty)"
 
 export AWS_DEFAULT_OUTPUT="json"
-export AWS_DEFAULT_REGION="eu-west-1"
+export AWS_DEFAULT_REGION="eu-west-2"
 export EDITOR=vim
-export GOPATH=$HOME/golang
+export GOPATH="${HOME}/go"
 export GPG_TTY GPG_AGENT
 export PINENTRY_USER_DATA="USE_CURSES=1"
+export NVM_DIR="${HOME}/.nvm"
 
 # shellcheck disable=SC2039
 path=(
-    $path
+    "/usr/local/bin"
     "${GOPATH}/bin"
     "${GOROOT}/bin"
     "${HOME}/.local/bin"
     "${HOME}/.bin"
+    "/usr/local/opt/gpg-agent/bin"
+    $path
 )
 
 compdef _pass paas-pass
