@@ -7,8 +7,18 @@
     program = gpg
 [color]
     ui = auto
+[pull]
+	rebase = true
 [push]
 	default = tracking
+[rebase]
+    autosquash = true
+[rerere]
+    enabled = false
+[filter "lfs"]
+    clean = git-lfs clean %f
+    smudge = git-lfs smudge %f
+    required = true
 
 # alias {{{
 [alias]
@@ -127,11 +137,3 @@
     undo = "!f() { git reset --hard $(git rev-parse --abbrev-ref HEAD)@{${1-1}}; }; f"
     # }}}
 # }}}
-[rerere]
-    enabled = false
-[rebase]
-    autosquash = true
-[filter "lfs"]
-    clean = git-lfs clean %f
-    smudge = git-lfs smudge %f
-    required = true
