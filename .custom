@@ -31,3 +31,14 @@ tab_reset() {
     echo -ne "\033]6;1;bg;*;default\a"
 }
 
+ docker_build_push () {
+     REPO="${1}"
+     TIMESTAMP="$(date +"%s")"
+     TAG="${2:-0.0.${TIMESTAMP}}"
+     docker build . -t "${REPO}:${TAG}" && docker push "${REPO}:${TAG}"
+     echo "Image: ${REPO}"
+     echo "Version: ${TAG}"
+ }
+
+alias dbp='docker_build_push $@'
+
