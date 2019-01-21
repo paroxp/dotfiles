@@ -31,15 +31,10 @@ env_info() {
 
 local ret_status="%(?:%{$terminfo[bold]$fg_bold[green]%}→ :%{$terminfo[bold]$fg_bold[red]%}→ )"
 
-# Prompt format: \n # USER at MACHINE in DIRECTORY on git:BRANCH STATE [TIME] \n $
+# Prompt format: \n # [TIME] DIRECTORY on git:BRANCH STATE \n $
 PROMPT="
+%{$fg[white]%}[%*] \
 %{$terminfo[bold]$fg[blue]%}#%{$reset_color%} \
-%{$fg[cyan]%}%n \
-%{$fg[white]%}at \
-%{$fg[green]%}$(box_name) \
-%{$fg[white]%}in \
 %{$terminfo[bold]$fg[yellow]%}${current_dir}%{$reset_color%}\
-${git_info} \
-%{$fg[white]%}[%*]
-%{$fg[red]%}${environment}%{$reset_color%}\
+${git_info} %{$fg[red]%}${environment}%{$reset_color%}
 ${ret_status}%{$reset_color%}"
