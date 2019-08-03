@@ -9,9 +9,9 @@
 [color]
     ui = auto
 [pull]
-	rebase = true
+    rebase = true
 [push]
-	default = tracking
+    default = tracking
 [rebase]
     autosquash = true
 [rerere]
