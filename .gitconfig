@@ -3,7 +3,7 @@
     email = paroxp@gmail.com
     signingkey = 0xC4CE726F8465B7FC
 [core]
-    editor = /usr/bin/vim
+    editor = vim
 [gpg]
     program = gpg
 [color]
