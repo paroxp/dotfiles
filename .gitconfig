@@ -4,8 +4,10 @@
     signingkey = 0xC4CE726F8465B7FC
 [core]
     editor = vim
+[commit]
+    gpgsign = true
 [gpg]
-    program = gpg
+	program = gpg
 [color]
     ui = auto
 [pull]
@@ -138,5 +140,3 @@
     undo = "!f() { git reset --hard $(git rev-parse --abbrev-ref HEAD)@{${1-1}}; }; f"
     # }}}
 # }}}
-[commit]
-    gpgsign = true
