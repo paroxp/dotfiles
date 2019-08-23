@@ -8,7 +8,10 @@
   services.xserver = {
     enable = true;
     autorun = true;
-    desktopManager.xfce.enable = true;
+    desktopManager = {
+      xfce.enable = true;
+      xterm.enable = false;
+    };
     displayManager.lightdm.enable = true;
     layout = "us";
     videoDrivers = [ "nvidia" ];
@@ -19,11 +22,11 @@
           compton
           dunst
           feh
+          ffmpeg
           i3lock
           lxappearance
           (polybar.override { i3GapsSupport = true; githubSupport = true; })
-          python3
-          python3Packages.dbus-python
+          (python3.withPackages (ps: with ps; [ python3Packages.dbus-python ]))
           rofi
           termite
       ];
@@ -42,6 +45,10 @@
     gnupg.agent = {
       enable = true;
       enableSSHSupport = true;
+    };
+    zsh = {
+      enable = true;
+      enableCompletion = true;
     };
   };
 }
