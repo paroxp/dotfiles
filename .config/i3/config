@@ -227,7 +227,7 @@ exec --no-startup-id nm-applet
 exec --no-startup-id pasystray
 exec --no-startup-id blueman-applet
 
-# exec --no-startup-id dunst
+exec --no-startup-id dunst
 # exec --no-startup-id synclient TapButton1=1
 exec --no-startup-id xautolock -time 5 -locker "~/.config/i3/i3exit lock"
 # exec --no-startup-id xfce4-panel --disable-wm-check
