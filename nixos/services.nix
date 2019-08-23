@@ -21,7 +21,9 @@
           feh
           i3lock
           lxappearance
-          polybar
+          (polybar.override { i3GapsSupport = true; githubSupport = true; })
+          python3
+          python3Packages.dbus-python
           rofi
           termite
       ];
