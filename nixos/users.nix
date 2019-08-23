@@ -10,11 +10,10 @@
           "docker"
           "games"
           "networkmanager"
-          "users"
           "video"
           "wheel"
         ];
-        group = "rafal";
+        group = "users";
         home = "/home/rafal";
         isNormalUser = true;
         shell = pkgs.zsh;

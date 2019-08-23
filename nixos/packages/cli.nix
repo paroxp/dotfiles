@@ -13,13 +13,14 @@
     gnupg
     go
     jq
-    killall
     kubectl
     neovim
     nodejs
     pinentry
+    playerctl
     terraform
-    vim
+    tmux
+    (vim_configurable.override { python = python3; })
     wget
     yubico-piv-tool
     yubikey-manager
