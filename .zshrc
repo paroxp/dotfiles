@@ -60,6 +60,7 @@ plugins=(
     go
     helm
     kubectl
+    tmux
     z
 )
 

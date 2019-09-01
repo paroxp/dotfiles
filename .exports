@@ -2,6 +2,9 @@ GPG_AGENT="$(which gpg-agent)"
 GPG_TTY="$(tty)"
 SSH_AUTH_SOCK=$(gpgconf --list-dirs agent-ssh-socket)
 
+export ZSH_TMUX_AUTOSTART=true
+export ZSH_TMUX_AUTOCONNECT=true
+export ZSH_TMUX_AUTOQUIT=true
 export AWS_DEFAULT_OUTPUT="json"
 export AWS_DEFAULT_REGION="eu-west-2"
 export EDITOR=vim

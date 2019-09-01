@@ -25,6 +25,7 @@
           ffmpeg
           i3lock
           lxappearance
+          playerctl
           (polybar.override { i3GapsSupport = true; githubSupport = true; })
           (python3.withPackages (ps: with ps; [ python3Packages.dbus-python ]))
           rofi
