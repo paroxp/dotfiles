@@ -5,6 +5,7 @@
     aws-vault
     awscli
     bash
+    bind
     bitwarden-cli
     curl
     docker
@@ -17,7 +18,6 @@
     neovim
     nodejs
     pinentry
-    playerctl
     terraform
     tmux
     (vim_configurable.override { python = python3; })

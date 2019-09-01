@@ -89,6 +89,7 @@ Color=186,188,200
 Color=186,188,200
 
 [General]
+Blur=true
 Description=Honukai
-Opacity=0.9
+Opacity=0.8
 Wallpaper=
