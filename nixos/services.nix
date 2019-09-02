@@ -1,18 +1,28 @@
 { config, pkgs, ... }:
 
 {
+  services.accounts-daemon.enable = true;
   services.openssh.enable = true;
   services.pcscd.enable = true;
   services.udev.packages = [ pkgs.yubikey-personalization pkgs.libu2f-host ];
+  services.gnome3 = {
+    chrome-gnome-shell.enable = true;
+    gnome-keyring.enable = true;
+  };
 
   services.xserver = {
     enable = true;
     autorun = true;
     desktopManager = {
-      xfce.enable = true;
+      gnome3.enable = true;
       xterm.enable = false;
     };
-    displayManager.lightdm.enable = true;
+    displayManager = {
+      gdm = {
+        enable = true;
+        wayland = false;
+      };
+    };
     layout = "us";
     videoDrivers = [ "nvidia" ];
     
