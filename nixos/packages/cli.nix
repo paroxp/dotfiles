@@ -17,9 +17,11 @@
     kubectl
     neovim
     nodejs
+    p7zip
     pinentry
     terraform
     tmux
+    unzip
     (vim_configurable.override { python = python3; })
     wget
     yubico-piv-tool
