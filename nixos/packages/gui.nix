@@ -7,6 +7,7 @@
     google-chrome
     spotify
     steam
+    vlc
     vscode
   ];
 }
