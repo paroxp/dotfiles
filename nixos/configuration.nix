@@ -27,20 +27,6 @@
 
   time.timeZone = "Europe/London";
 
- environment.shellInit = ''
-    export GPG_TTY="$(tty)"
-    gpg-connect-agent /bye
-    export SSH_AUTH_SOCK="/run/user/$UID/gnupg/S.gpg-agent.ssh"
-  '';
-
-  programs = {
-    ssh.startAgent = false;
-    gnupg.agent = {
-      enable = true;
-      enableSSHSupport = true;
-    };
-  };
-
 
   # This value determines the NixOS release with which your system is to be
   # compatible, in order to avoid breaking some software such as database
