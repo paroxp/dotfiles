@@ -193,18 +193,18 @@ context = ctrl+shift+period
 [urgency_low]
 # IMPORTANT: colors have to be defined in quotation marks.
 # Otherwise the "#" and following would be interpreted as a comment.
-background = "#282a38"
-foreground = "#57c7ff"
+background = "$bg"
+foreground = "$fg"
 timeout = 10
 
 [urgency_normal]
-background = "#282a38"
-foreground = "#57c7ff"
+background = "$bg"
+foreground = "$fg"
 timeout = 10
 
 [urgency_critical]
-background = "#282a38"
-foreground = "#57c7ff"
+background = "$bg"
+foreground = "$fg"
 timeout = 0
 
 

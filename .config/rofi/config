@@ -23,14 +23,10 @@ rofi.fullscreen:         false
 !                      ROFI Color theme
 ! ------------------------------------------------------------------------------
 
-!				   'background', 'border', 'separator'
-rofi.color-window: #261f39,      #babcc8,  #babcc8
+!				   'background', 'border',   'separator'
+rofi.color-window: BACKGROUND,   FOREGROUND, FOREGROUND
 
-
-! State:           'bg',     'fg',     'bgalt',  'hlbg',   'hlfg'
-rofi.color-normal: #261f39,  #babcc8,  #261f39,  #2670fc,  #babcc8
-rofi.color-urgent: #dd5030,  #babcc8,  #dd5030,  #03cbca,  #babcc8
-rofi.color-active: #6cbd3a,  #babcc8,  #6cbd3a,  #03cbca,  #babcc8
-
-rofi.ssh-client:ssh
-rofi.ssh-command:          {termite} -e "{ssh-client} {host}"
+! State:           'bg',       'fg',       'bgalt',    'hlbg', 'hlfg'
+rofi.color-normal: BACKGROUND, FOREGROUND, BACKGROUND, COLOR4, FOREGROUND
+rofi.color-urgent: COLOR1,     FOREGROUND, COLOR1,     COLOR6, FOREGROUND
+rofi.color-active: COLOR2,     FOREGROUND, COLOR2,     COLOR6, FOREGROUND
