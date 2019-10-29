@@ -19,6 +19,7 @@ gpgconf --launch gpg-agent
 # shellcheck disable=SC2039
 path=(
     "/usr/local/bin"
+    "${HOME}/.cargo/env"
     "${GOPATH}/bin"
     "${GOROOT}/bin"
     "${HOME}/.local/bin"
