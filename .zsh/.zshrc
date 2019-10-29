@@ -7,7 +7,7 @@ setopt dotglob
 # Look in ~/.oh-my-zsh/themes/
 # Optionally, if you set this to "random", it'll load a random theme each
 # time that oh-my-zsh is loaded.
-export ZSH_THEME="rafal"
+export ZSH_THEME="prompt"
 
 # Uncomment the following line to use case-sensitive completion.
 # CASE_SENSITIVE="true"
@@ -45,7 +45,7 @@ export ZSH_THEME="rafal"
 # HIST_STAMPS="mm/dd/yyyy"
 
 # Would you like to use another custom folder than $ZSH/custom?
-# ZSH_CUSTOM=/path/to/new-custom-folder
+ZSH_CUSTOM="${HOME}/.dot/.zsh"
 
 # Which plugins would you like to load? (plugins can be found in ~/.oh-my-zsh/plugins/*)
 # Custom plugins may be added to ~/.oh-my-zsh/custom/plugins/
@@ -98,23 +98,17 @@ source "${ZSH}/oh-my-zsh.sh"
 # alias ohmyzsh="mate ~/.oh-my-zsh"
 
 # Check if the custom file exists and then import it.
-if [ -e ~/.dot/.custom ]; then
-  # shellcheck source=/dev/null
-  source ~/.dot/.custom
-fi
+# shellcheck source=/dev/null
+[ -f "${HOME}/.dot/.zsh/customrc" ] && source "${HOME}/.dot/.zsh/customrc"
 
 # Import the aliases functionality.
 # shellcheck source=/dev/null
-source ~/.dot/.aliases
+[ -f "${HOME}/.dot/.zsh/aliasrc" ] && source "${HOME}/.dot/.zsh/aliasrc"
 
 # Check if the exports file exists and then import it.
-if [ -e ~/.dot/.exports ]; then
-  # shellcheck source=/dev/null
-  source ~/.dot/.exports
-fi
+# shellcheck source=/dev/null
+[ -f "${HOME}/.dot/.zsh/exportrc" ] && source "${HOME}/.dot/.zsh/exportrc"
 
-# Check if there is a reminder in place and display it in the shell.
-if [ -e ~/.dot/.reminder ] && [ "$(cat ~/.dot/.reminder)" != "" ]; then
-  printf "\n!!! Reminder !!!\n"
-  cat ~/.dot/.reminder
-fi
+# Load zsh-syntax-highlighting; should be last.
+source /usr/share/zsh/plugins/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh 2>/dev/null
+
