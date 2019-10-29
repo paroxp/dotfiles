@@ -14,13 +14,14 @@
     enable = true;
     autorun = true;
     desktopManager = {
-      gnome3.enable = true;
+      plasma5.enable = true;
       xterm.enable = false;
     };
     displayManager = {
-      gdm = {
+      sddm = {
         enable = true;
-        wayland = false;
+        autoNumlock = true;
+        theme = "breeze";
       };
     };
     layout = "us";
