@@ -13,6 +13,7 @@
     docker
     fish
     git
+    gnumake
     gnupg
     go
     jq
