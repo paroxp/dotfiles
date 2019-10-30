@@ -1,32 +1,4 @@
-! ------------------------------------------------------------------------------
-!                      ROFI Settings
-! ------------------------------------------------------------------------------
-
-! General
-rofi.font:                Fira Mono Medium 15
-rofi.fake-transparency:   false
-rofi.hide-scrollbar:      true
-
-
-! Layout
-rofi.color-enabled:      true
-rofi.separator-style:    none
-rofi.line-padding:       6
-rofi.width:              25
-rofi.location:           0
-rofi.lines:              5
-rofi.padding:            20
-rofi.sidebar-mode:       false
-rofi.fullscreen:         false
-
-! ------------------------------------------------------------------------------
-!                      ROFI Color theme
-! ------------------------------------------------------------------------------
-
-!				   'background', 'border',   'separator'
-rofi.color-window: BACKGROUND,   FOREGROUND, FOREGROUND
-
-! State:           'bg',       'fg',       'bgalt',    'hlbg', 'hlfg'
-rofi.color-normal: BACKGROUND, FOREGROUND, BACKGROUND, COLOR4, FOREGROUND
-rofi.color-urgent: COLOR1,     FOREGROUND, COLOR1,     COLOR6, FOREGROUND
-rofi.color-active: COLOR2,     FOREGROUND, COLOR2,     COLOR6, FOREGROUND
+rofi.font:                Fira Sans Regular 15
+rofi.lines:               5
+rofi.theme:               dark
+rofi.width:               25
