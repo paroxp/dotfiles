@@ -13,14 +13,15 @@ function link {
 }
 
 if [ "${OS}" == "linux" ]; then
-  link ".config/compton" true
-  link ".config/dunst" true
-  link ".config/gtk-3.0" true
-  link ".config/i3" true
-  link ".config/polybar" true
-  link ".config/rofi" true
-  link ".config/termite" true
-  link ".config/xfce4" true
+  link ".config/compton"
+  link ".config/dunst"
+  link ".config/gtk-3.0"
+  link ".config/i3"
+  link ".config/polybar"
+  link ".config/rofi"
+  link ".config/termite"
+  link ".config/xfce4"
+  link ".local/share/konsole"
 
   link ".gtkrc-2.0"
   link ".gtkrc-2.0.mine"
@@ -31,7 +32,6 @@ link ".gnupg" true
 link ".gemrc"
 link ".gitconfig"
 link ".vimrc"
-link ".zshrc"
 
-# mkdir -p ${HOME}/.oh-my-zsh/themes/
-# link .oh-my-zsh/themes/rafal.zsh-theme
+ln -sf "${HOME}/.dot/.zsh/.zshrc" "${HOME}/.zshrc"
+ln -sf "${HOME}/.dot/.tmux.conf" "${HOME}/.tmux.conf"
