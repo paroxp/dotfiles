@@ -9,13 +9,19 @@
 
   fonts.fonts = with pkgs; [
     corefonts
+    dejavu_fonts
+    fira
+    fira-code
+    fira-code-symbols
+    fira-mono
+    freefont_ttf
+    liberation_ttf
     nerdfonts
     noto-fonts
     noto-fonts-cjk
     noto-fonts-emoji
-    liberation_ttf
-    fira
-    fira-code
-    fira-mono
+    source-code-pro
+    source-sans-pro
+    unifont
   ];
 }
