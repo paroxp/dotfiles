@@ -14,10 +14,10 @@
                                                  
                                                  
 [global]
-font = Fira Mono Medium 10
+font = Fira Sans Regular 10
 
-frame_width = 5
-frame_color = "#d3d2d0"
+frame_width = 3
+frame_color = "#babcc8"
 
 # Allow a small subset of html markup:
 #   <b>bold</b>
@@ -71,7 +71,6 @@ word_wrap = yes
 # Ignore newlines '\n' in notifications.
 ignore_newline = no
 
-
 # The geometry of the window:
 #   [{width}]x{height}[+/-{x}+/-{y}]
 # The geometry of the message window.
@@ -93,7 +92,7 @@ shrink = yes
 # The transparency of the window.  Range: [0; 100].
 # This option will only work if a compositing windowmanager is
 # present (e.g. xcompmgr, compiz, etc.).
-transparency = 0
+transparency = 25
 
 # Don't remove messages, if the user is idle (no mouse or keyboard input)
 # for longer than idle_threshold seconds.
@@ -148,7 +147,7 @@ horizontal_padding = 12
 #  * foreground: use the same color as the foreground;
 #  * frame: use the same color as the frame;
 #  * anything else will be interpreted as a X color.
-separator_color = foreground
+separator_color = "#babcc8"
 
 # Print a notification on startup.
 # This is mainly for error detection, since dbus (re-)starts dunst
@@ -193,18 +192,18 @@ context = ctrl+shift+period
 [urgency_low]
 # IMPORTANT: colors have to be defined in quotation marks.
 # Otherwise the "#" and following would be interpreted as a comment.
-background = "$bg"
-foreground = "$fg"
+background = "#261f39"
+foreground = "#babcc8"
 timeout = 10
 
 [urgency_normal]
-background = "$bg"
-foreground = "$fg"
+background = "#261f39"
+foreground = "#babcc8"
 timeout = 10
 
 [urgency_critical]
-background = "$bg"
-foreground = "$fg"
+background = "#261f39"
+foreground = "#babcc8"
 timeout = 0
 
 
