@@ -99,15 +99,15 @@ source "${ZSH}/oh-my-zsh.sh"
 
 # Check if the custom file exists and then import it.
 # shellcheck source=/dev/null
-[ -f "${HOME}/.dot/.zsh/customrc" ] && source "${HOME}/.dot/.zsh/customrc"
+[ -f "${HOME}/.dot/.sh/customrc" ] && source "${HOME}/.dot/.sh/customrc"
 
 # Import the aliases functionality.
 # shellcheck source=/dev/null
-[ -f "${HOME}/.dot/.zsh/aliasrc" ] && source "${HOME}/.dot/.zsh/aliasrc"
+[ -f "${HOME}/.dot/.sh/aliasrc" ] && source "${HOME}/.dot/.sh/aliasrc"
 
 # Check if the exports file exists and then import it.
 # shellcheck source=/dev/null
-[ -f "${HOME}/.dot/.zsh/exportrc" ] && source "${HOME}/.dot/.zsh/exportrc"
+[ -f "${HOME}/.dot/.sh/exportrc" ] && source "${HOME}/.dot/.sh/exportrc"
 
 # Load zsh-syntax-highlighting; should be last.
 source /usr/share/zsh/plugins/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh 2>/dev/null
