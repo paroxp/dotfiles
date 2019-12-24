@@ -1,0 +1,80 @@
+#!/usr/bin/env bash
+
+# set 'TAB:menu-complete'
+set show-all-if-ambiguous on
+set completion-ignore-case on
+bind '"\e[A": history-search-backward'
+bind '"\eOA": history-previous-history'
+bind '"\e[B": history-search-forward'
+bind '"\eOB": history-next-history'
+
+reset='\[\033[0m\]'
+black='\[\033[0;30m\]'
+red='\[\033[0;31m\]'
+green='\[\033[0;32m\]'
+yellow='\[\033[0;33m\]'
+blue='\[\033[0;34m\]'
+purple='\[\033[0;35m\]'
+cyan='\[\033[0;36m\]'
+white='\[\033[0;37m\]'
+
+function return_status() {
+  RETVAL=$?
+  if [ $RETVAL -ne 0 ]; then
+    echo "${red}→${reset}"
+  else
+    echo "${green}→${reset}"
+  fi
+}
+
+function git_dirty_check() {
+  status="$(git status 2>&1 | tee)"
+  dirty="$(echo -n "${status}" 2> /dev/null | grep "modified:" &> /dev/null; echo "$?")"
+  untracked="$(echo -n "${status}" 2> /dev/null | grep "Untracked files" &> /dev/null; echo "$?")"
+  ahead="$(echo -n "${status}" 2> /dev/null | grep "Your branch is ahead of" &> /dev/null; echo "$?")"
+  newfile="$(echo -n "${status}" 2> /dev/null | grep "new file:" &> /dev/null; echo "$?")"
+  renamed="$(echo -n "${status}" 2> /dev/null | grep "renamed:" &> /dev/null; echo "$?")"
+  deleted="$(echo -n "${status}" 2> /dev/null | grep "deleted:" &> /dev/null; echo "$?")"
+  bits=''
+
+  if [ "${renamed}" == "0" ]; then
+    bits="${yellow}♻${reset} ${bits}"
+  fi
+  if [ "${ahead}" == "0" ]; then
+    bits="${blue}▲${reset} ${bits}"
+  fi
+  if [ "${newfile}" == "0" ]; then
+    bits="${yellow}✚${reset} ${bits}"
+  fi
+  if [ "${untracked}" == "0" ]; then
+    bits="${red}⚑${reset} ${bits}"
+  fi
+  if [ "${deleted}" == "0" ]; then
+    bits="${yellow}⌦${reset} ${bits}"
+  fi
+  if [ "${dirty}" == "0" ]; then
+    bits="${red}✘${reset} ${bits}"
+  fi
+
+  if [ ! "${bits}" == "" ]; then
+    echo " ${bits}"
+  else
+    echo " ${green}●${reset}"
+  fi
+}
+
+function git_branch() {
+  BRANCH="$(git branch 2> /dev/null | sed -e '/^[^*]/d' -e 's/* \(.*\)/\1/')"
+  if [ ! "${BRANCH}" == "" ]; then
+    STAT="$(git_dirty_check)"
+    echo "on git:${cyan}${BRANCH}${reset}${STAT}"
+  else
+    echo ""
+  fi
+}
+
+set_bash_prompt(){
+  PS1="\n[\t] ${blue}#${reset} ${yellow}\w${reset} $(git_branch)\n$(return_status) "
+}
+
+PROMPT_COMMAND=set_bash_prompt
