@@ -8,15 +8,16 @@ bind '"\eOA": history-previous-history'
 bind '"\e[B": history-search-forward'
 bind '"\eOB": history-next-history'
 
-reset='\[\033[0m\]'
-black='\[\033[0;30m\]'
-red='\[\033[0;31m\]'
-green='\[\033[0;32m\]'
-yellow='\[\033[0;33m\]'
-blue='\[\033[0;34m\]'
-purple='\[\033[0;35m\]'
-cyan='\[\033[0;36m\]'
-white='\[\033[0;37m\]'
+bold="\[$(tput bold)\]"
+black="\[$(tput setaf 0)\]"
+red="\[$(tput setaf 1)\]"
+green="\[$(tput setaf 2)\]"
+yellow="\[$(tput setaf 3)\]"
+blue="\[$(tput setaf 4)\]"
+purple="\[$(tput setaf 5)\]"
+cyan="\[$(tput setaf 6)\]"
+white="\[$(tput setaf 7)\]"
+reset="\[$(tput sgr0)\]"
 
 function return_status() {
   RETVAL=$?
@@ -28,45 +29,42 @@ function return_status() {
 }
 
 function git_dirty_check() {
+  BRANCH="${1}"
   status="$(git status 2>&1 | tee)"
-  dirty="$(echo -n "${status}" 2> /dev/null | grep "modified:" &> /dev/null; echo "$?")"
-  untracked="$(echo -n "${status}" 2> /dev/null | grep "Untracked files" &> /dev/null; echo "$?")"
-  ahead="$(echo -n "${status}" 2> /dev/null | grep "Your branch is ahead of" &> /dev/null; echo "$?")"
-  newfile="$(echo -n "${status}" 2> /dev/null | grep "new file:" &> /dev/null; echo "$?")"
-  renamed="$(echo -n "${status}" 2> /dev/null | grep "renamed:" &> /dev/null; echo "$?")"
-  deleted="$(echo -n "${status}" 2> /dev/null | grep "deleted:" &> /dev/null; echo "$?")"
+  staged="$(git diff --stat --cached | wc -l)"
+  unstaged="$(git diff --stat | wc -l)"
+  stashed="$(git stash list | wc -l)"
+  behind="$(git rev-list --left-right --count origin/${BRANCH}..${BRANCH} 2> /dev/null | awk '{print $1}')"
+  ahead="$(git rev-list --left-right --count origin/${BRANCH}..${BRANCH} 2> /dev/null | awk '{print $2}')"
   bits=''
 
-  if [ "${renamed}" == "0" ]; then
-    bits="${yellow}♻${reset} ${bits}"
+  if [ "${ahead}" -gt "0" ]; then
+    bits="${purple}▲ ${ahead}${reset} ${bits}"
   fi
-  if [ "${ahead}" == "0" ]; then
-    bits="${blue}▲${reset} ${bits}"
+  if [ "${behind}" -gt "0" ]; then
+    bits="${purple}▼ ${behind}${reset} ${bits}"
   fi
-  if [ "${newfile}" == "0" ]; then
-    bits="${yellow}✚${reset} ${bits}"
+  if [ "${stashed}" -gt "0" ]; then
+    bits="${blue}⚑ $((stashed - 1))${reset} ${bits}"
   fi
-  if [ "${untracked}" == "0" ]; then
-    bits="${red}⚑${reset} ${bits}"
+  if [ "${staged}" -gt "0" ]; then
+    bits="${yellow}● $((staged - 1))${reset} ${bits}"
   fi
-  if [ "${deleted}" == "0" ]; then
-    bits="${yellow}⌦${reset} ${bits}"
-  fi
-  if [ "${dirty}" == "0" ]; then
-    bits="${red}✘${reset} ${bits}"
+  if [ "${unstaged}" -gt "0" ]; then
+    bits="${red}✖ $((unstaged - 1))${reset} ${bits}"
   fi
 
   if [ ! "${bits}" == "" ]; then
     echo " ${bits}"
   else
-    echo " ${green}●${reset}"
+    echo " ${green}✔${reset}"
   fi
 }
 
 function git_branch() {
-  BRANCH="$(git branch 2> /dev/null | sed -e '/^[^*]/d' -e 's/* \(.*\)/\1/')"
+  BRANCH="$(git rev-parse --abbrev-ref HEAD 2> /dev/null)"
   if [ ! "${BRANCH}" == "" ]; then
-    STAT="$(git_dirty_check)"
+    STAT="$(git_dirty_check ${BRANCH})"
     echo "on git:${cyan}${BRANCH}${reset}${STAT}"
   else
     echo ""
