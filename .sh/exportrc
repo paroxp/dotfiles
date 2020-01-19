@@ -7,6 +7,8 @@ export AWS_DEFAULT_REGION="eu-west-2"
 export EDITOR=vim
 export GOPATH="${HOME}/go"
 export GPG_TTY GPG_AGENT
+export HISTCONTROL="ignoreboth:erasedups"
+export LESS="-R"
 export NVM_DIR="${HOME}/.nvm"
 export PINENTRY_USER_DATA="USE_CURSES=1"
 export SSH_AUTH_SOCK
@@ -26,6 +28,6 @@ PATH="${HOME}/.bin:${PATH}"
 PATH="${HOME}/.cargo/bin:${PATH}"
 PATH="${HOME}/.cargo/env:${PATH}"
 PATH="${HOME}/.local/bin:${PATH}"
-PATH="${HOME}/.rvm/bin:${PATH}"
+PATH="${HOME}/.rbenv/bin:${PATH}"
 
 export PATH
