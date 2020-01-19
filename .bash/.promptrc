@@ -1,13 +1,5 @@
 #!/usr/bin/env bash
 
-# set 'TAB:menu-complete'
-set show-all-if-ambiguous on
-set completion-ignore-case on
-bind '"\e[A": history-search-backward'
-bind '"\eOA": history-previous-history'
-bind '"\e[B": history-search-forward'
-bind '"\eOB": history-next-history'
-
 bold="\[$(tput bold)\]"
 black="\[$(tput setaf 0)\]"
 red="\[$(tput setaf 1)\]"
