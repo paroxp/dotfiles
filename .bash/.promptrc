@@ -30,19 +30,19 @@ function git_dirty_check() {
   ahead="$(git rev-list --left-right --count origin/${BRANCH}..${BRANCH} 2> /dev/null | awk '{print $2}')"
   bits=''
 
-  if [ "${ahead}" -gt "0" ]; then
+  if [ "${ahead:-0}" -gt "0" ]; then
     bits="${purple}▲ ${ahead}${reset} ${bits}"
   fi
-  if [ "${behind}" -gt "0" ]; then
+  if [ "${behind:-0}" -gt "0" ]; then
     bits="${purple}▼ ${behind}${reset} ${bits}"
   fi
-  if [ "${stashed}" -gt "0" ]; then
+  if [ "${stashed:-0}" -gt "0" ]; then
     bits="${blue}⚑ $((stashed - 1))${reset} ${bits}"
   fi
-  if [ "${staged}" -gt "0" ]; then
+  if [ "${staged:-0}" -gt "0" ]; then
     bits="${yellow}● $((staged - 1))${reset} ${bits}"
   fi
-  if [ "${unstaged}" -gt "0" ]; then
+  if [ "${unstaged:-0}" -gt "0" ]; then
     bits="${red}✖ $((unstaged - 1))${reset} ${bits}"
   fi
 
