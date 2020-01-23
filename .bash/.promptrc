@@ -31,13 +31,13 @@ function git_dirty_check() {
   bits=''
 
   if [ "${ahead:-0}" -gt "0" ]; then
-    bits="${purple}▲ ${ahead}${reset} ${bits}"
+    bits="${purple}▼ ${ahead}${reset} ${bits}"
   fi
   if [ "${behind:-0}" -gt "0" ]; then
-    bits="${purple}▼ ${behind}${reset} ${bits}"
+    bits="${purple}▲ ${behind}${reset} ${bits}"
   fi
   if [ "${stashed:-0}" -gt "0" ]; then
-    bits="${blue}⚑ $((stashed - 1))${reset} ${bits}"
+    bits="${blue}⚑ $((stashed))${reset} ${bits}"
   fi
   if [ "${staged:-0}" -gt "0" ]; then
     bits="${yellow}● $((staged - 1))${reset} ${bits}"
