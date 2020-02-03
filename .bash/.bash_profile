@@ -16,9 +16,9 @@
 
 source ~/.dot/.bash/.promptrc
 
-set show-all-if-ambiguous on
-set completion-ignore-case on
-set 'TAB:menu-complete'
+bind 'set show-all-if-ambiguous on'
+bind 'set completion-ignore-case on'
+bind 'TAB:menu-complete'
 bind '"\e[A": history-search-backward'
 bind '"\eOA": history-previous-history'
 bind '"\e[B": history-search-forward'
