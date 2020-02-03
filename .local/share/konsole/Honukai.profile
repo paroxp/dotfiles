@@ -6,7 +6,7 @@ Font=Fira Mono Medium,10,-1,0,57,0,0,0,0,0
 CursorShape=1
 
 [General]
-Command=/usr/bin/env zsh
+Command=/usr/bin/env bash
 Name=Honukai
 Parent=FALLBACK/
 TerminalRows=24
