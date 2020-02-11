@@ -14,11 +14,16 @@
 # shellcheck source=/dev/null
 [ -f "${HOME}/.dot/.sh/exportrc" ] && source "${HOME}/.dot/.sh/exportrc"
 
+# Append to histfile instead of overwriting.
+shopt -s histappend
+
 source ~/.dot/.bash/.promptrc
 
+bind 'TAB:menu-complete'
+bind '"\e[Z"]":menu-complete-backward'
 bind 'set show-all-if-ambiguous on'
 bind 'set completion-ignore-case on'
-bind 'TAB:menu-complete'
+bind 'set menu-complete-display-prefix on'
 bind '"\e[A": history-search-backward'
 bind '"\eOA": history-previous-history'
 bind '"\e[B": history-search-forward'
