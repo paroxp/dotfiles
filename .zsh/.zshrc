@@ -57,7 +57,6 @@ plugins=(
     docker
     git
     gitfast
-    go
     helm
     kubectl
     tmux
