@@ -16,11 +16,12 @@ ZSH_THEME_GIT_PROMPT_DIRTY="$YS_VCS_PROMPT_DIRTY"
 ZSH_THEME_GIT_PROMPT_CLEAN="$YS_VCS_PROMPT_CLEAN"
 
 local ret_status="%(?:%{$terminfo[bold]$fg_bold[green]%}:%{$terminfo[bold]$fg_bold[red]%})"
+local user_indicator="%(!.%{$terminfo[bold]$fg_bold[red]%}#.%{$terminfo[bold]$fg[blue]%}$)"
 
 # Prompt format: \n # [TIME] DIRECTORY on git:BRANCH STATE \n $
 PROMPT="
 %{$fg[white]%}[%*] \
-%{$terminfo[bold]$fg[blue]%}#%{$reset_color%} \
+${user_indicator}%{$reset_color%} \
 %{$terminfo[bold]$fg[yellow]%}${current_dir}%{$reset_color%}\
 ${git_info}%{$reset_color%}
 ${ret_status}→ %{$reset_color%}"
