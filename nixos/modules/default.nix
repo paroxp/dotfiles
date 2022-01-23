@@ -11,6 +11,5 @@
     ./nginx.nix
     ./postgres.nix
     ./prometheus.nix
-    ./vaultwarden.nix
   ];
 }
