@@ -55,9 +55,11 @@ let cfg = config.modules.nextcloud; in {
         exporters = {
           nextcloud = {
             enable = true;
-            url = "nextcloud.${config.host.domain}";
+            url = "http://nextcloud.${config.host.domain}";
             user = "nextcloud";
+            username = "paroxp";
             passwordFile = "/var/secrets/nextcloud-admin-password";
+            timeout = "1m";
           };
         };
 

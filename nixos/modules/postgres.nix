@@ -29,6 +29,7 @@ let cfg = config.modules.postgres; in {
           postgres = {
             enable = true;
             extraFlags = [ "--auto-discover-databases" ];
+            user = "postgres";
           };
         };
 
