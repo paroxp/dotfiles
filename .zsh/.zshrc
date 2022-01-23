@@ -63,6 +63,8 @@ plugins=(
     z
 )
 
+ZSH_TMUX_AUTOSTART=true
+
 # User configuration
 
 # export PATH="/usr/bin:/bin:/usr/sbin:/sbin:$PATH"
@@ -96,18 +98,14 @@ source "${ZSH}/oh-my-zsh.sh"
 # alias zshconfig="mate ~/.zshrc"
 # alias ohmyzsh="mate ~/.oh-my-zsh"
 
+# Check if the exports file exists and then import it.
+# shellcheck source=/dev/null
+[ -f "${HOME}/.dot/.sh/exportrc.sh" ] && source "${HOME}/.dot/.sh/exportrc.sh"
+
 # Check if the custom file exists and then import it.
 # shellcheck source=/dev/null
-[ -f "${HOME}/.dot/.sh/customrc" ] && source "${HOME}/.dot/.sh/customrc"
+[ -f "${HOME}/.dot/.sh/customrc.sh" ] && source "${HOME}/.dot/.sh/customrc.sh"
 
 # Import the aliases functionality.
 # shellcheck source=/dev/null
-[ -f "${HOME}/.dot/.sh/aliasrc" ] && source "${HOME}/.dot/.sh/aliasrc"
-
-# Check if the exports file exists and then import it.
-# shellcheck source=/dev/null
-[ -f "${HOME}/.dot/.sh/exportrc" ] && source "${HOME}/.dot/.sh/exportrc"
-
-# Load zsh-syntax-highlighting; should be last.
-source /usr/share/zsh/plugins/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh 2>/dev/null
-
+[ -f "${HOME}/.dot/.sh/aliasrc.sh" ] && source "${HOME}/.dot/.sh/aliasrc.sh"
