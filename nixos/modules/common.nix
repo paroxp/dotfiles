@@ -31,6 +31,7 @@ let cfg = config.modules.common; in {
       pinentry
       tmux
       tree
+      unzip
       wget
       zsh
 
