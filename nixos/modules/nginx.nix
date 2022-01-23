@@ -39,6 +39,15 @@ let cfg = config.modules.nginx; in {
         sslCiphers = "AES256+EECDH:AES256+EDH:!aNULL";
 
         statusPage = true;
+
+        virtualHosts."_" = lib.mkIf config.modules.nginx.enable {
+          serverName = "_";
+          locations = {
+            "/" = {
+              return = "302 https://www.rafalp.com/";
+            };
+          };
+        };
       };
 
       prometheus = mkIf config.modules.prometheus.enable {
