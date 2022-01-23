@@ -9,14 +9,12 @@ export GOPATH="${HOME}/go"
 export GPG_TTY GPG_AGENT
 export HISTCONTROL="ignoreboth:erasedups"
 export LESS="-R"
+export NIXOS_CONFIG="${HOME}/.dot/nixos"
 export NVM_DIR="${HOME}/.nvm"
 export PINENTRY_USER_DATA="USE_CURSES=1"
 export SSH_AUTH_SOCK
 export ZSH_TMUX_AUTOCONNECT=true
 export ZSH_TMUX_AUTOQUIT=true
-export ZSH_TMUX_AUTOSTART=true
-
-gpgconf --launch gpg-agent
 
 # shellcheck disable=SC2039
 PATH="/usr/local/bin:${PATH}"

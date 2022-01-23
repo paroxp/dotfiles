@@ -1,18 +1,11 @@
 # Dotfiles
 
-## Requirements
-
-- git
-- vim
-- zsh
-- ohmyz.sh
-
 ## Installation
 
-Not much todo here. Simply clone the directory and link some files!
+Clone the directory and link some files.
 
 ```sh
-git clone git@github.com:paroxp/dotfiles.git ~/.dot
+git clone https://github.com/paroxp/dotfiles.git ~/.dot
 ```
 
 ## Linking files
@@ -23,30 +16,17 @@ into our home directory. It gives us more control.
 ### Link base files
 
 ```sh
-ln -sf ~/.dot/.zshrc ~/.zshrc
+ln -sf ~/.dot/.zsh/.zshrc ~/.zshrc
 ln -sf ~/.dot/.vimrc ~/.vimrc
 ln -sf ~/.dot/.gitconfig ~/.gitconfig
+ln -sf ~/.dot/.tmux.conf ~/.tmux.conf
+ln -sf ~/.dot/.gnupg/gpg.conf ~/.gnuph/gpg.conf
+ln -sf ~/.dot/.gnupg/gpg-agent.conf ~/.gnuph/gpg-agent.conf
 ```
 
 ### Link `.oh-my-zsh` theme
 
 ```sh
-ln -sf ~/.dot/.oh-my-zsh/themes/rafal.zsh-theme ~/.oh-my-zsh/themes/rafal.zsh-theme
-```
-
-This is greatly based on
-[Honukai](https://github.com/oskarkrawczyk/honukai-iterm-zsh) theme, with minor
-changes to suit my needs in a better way. Credit is due :)
-
-#### Terminator
-
-```sh
-ln -sf ~/.dot/.config/terminator ~/.config/terminator
-```
-
-#### Konsole
-
-```sh
-ln -sf ~/.dot/.local/share/konsole ~/.local/share/konsole
+ln -sf ~/.dot/.zsh/themes/prompt.zsh-theme ~/.oh-my-zsh/themes/prompt.zsh-theme
 ```
 

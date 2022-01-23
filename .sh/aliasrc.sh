@@ -7,4 +7,3 @@ alias ls='ls --color=tty --human-readable'
 alias ping='ping -c 5'
 alias ports='netstat -tulanp'
 alias top='atop'
-
