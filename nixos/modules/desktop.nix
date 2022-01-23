@@ -32,7 +32,7 @@ let cfg = config.modules.desktop; in {
 
       arc-theme
       papirus-icon-theme
-    ]
+    ] ++ cfg.extraPackages
       ++ (if cfg.desktopEnvironment == "gnome" then [
         arc-gtk-theme
       ] else [])
