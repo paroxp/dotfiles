@@ -1,19 +1,28 @@
+" vim-bootstrap 2022-05-29 12:52:54
+
 "*****************************************************************************
-"" Vim-PLug core
+"" Vim-Plug core
 "*****************************************************************************
 let vimplug_exists=expand('~/.vim/autoload/plug.vim')
+if has('win32')&&!has('win64')
+  let curl_exists=expand('C:\Windows\Sysnative\curl.exe')
+else
+  let curl_exists=expand('curl')
+endif
 
 let g:vim_bootstrap_langs = "go,javascript,rust,typescript"
 let g:vim_bootstrap_editor = "vim"				" nvim or vim
+let g:vim_bootstrap_theme = "molokai"
+let g:vim_bootstrap_frams = ""
 
 if !filereadable(vimplug_exists)
-  if !executable("curl")
+  if !executable(curl_exists)
     echoerr "You have to install curl or first install vim-plug yourself!"
     execute "q!"
   endif
   echo "Installing Vim-Plug..."
   echo ""
-  silent exec "!\curl -fLo " . vimplug_exists . " --create-dirs https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim"
+  silent exec "!"curl_exists" -fLo " . shellescape(vimplug_exists) . " --create-dirs https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim"
   let g:not_finish_vimplug = "yes"
 
   autocmd VimEnter * PlugInstall
@@ -36,11 +45,12 @@ Plug 'vim-scripts/grep.vim'
 Plug 'vim-scripts/CSApprox'
 Plug 'Raimondi/delimitMate'
 Plug 'majutsushi/tagbar'
-Plug 'w0rp/ale'
+Plug 'dense-analysis/ale'
 Plug 'Yggdroot/indentLine'
-Plug 'avelino/vim-bootstrap-updater'
-Plug 'sheerun/vim-polyglot'
+Plug 'editor-bootstrap/vim-bootstrap-updater'
 Plug 'tpope/vim-rhubarb' " required by fugitive to :Gbrowse
+Plug 'tomasr/molokai'
+
 
 if isdirectory('/usr/local/opt/fzf')
   Plug '/usr/local/opt/fzf' | Plug 'junegunn/fzf.vim'
@@ -62,9 +72,6 @@ Plug 'xolox/vim-session'
 Plug 'SirVer/ultisnips'
 Plug 'honza/vim-snippets'
 
-"" Color
-Plug 'tomasr/molokai'
-
 "*****************************************************************************
 "" Custom bundles
 "*****************************************************************************
@@ -85,6 +92,18 @@ Plug 'racer-rust/vim-racer'
 
 " Rust.vim
 Plug 'rust-lang/rust.vim'
+
+" Async.vim
+Plug 'prabirshrestha/async.vim'
+
+" Vim lsp
+Plug 'prabirshrestha/vim-lsp'
+
+" Asyncomplete.vim
+Plug 'prabirshrestha/asyncomplete.vim'
+
+" Asyncomplete lsp.vim
+Plug 'prabirshrestha/asyncomplete-lsp.vim'
 
 
 " typescript
@@ -158,7 +177,14 @@ set ruler
 set number
 
 let no_buffers_menu=1
-silent! colorscheme molokai
+colorscheme molokai
+
+
+" Better command line completion 
+set wildmenu
+
+" mouse support
+set mouse=a
 
 set mousemodel=popup
 set t_Co=256
@@ -175,7 +201,7 @@ else
 
   " IndentLine
   let g:indentLine_enabled = 1
-  let g:indentLine_concealcursor = 0
+  let g:indentLine_concealcursor = ''
   let g:indentLine_char = '┆'
   let g:indentLine_faster = 1
 
@@ -198,7 +224,9 @@ endif
 
 "" Disable the blinking cursor.
 set gcr=a:blinkon0
+
 set scrolloff=3
+
 
 "" Status bar
 set laststatus=2
@@ -247,13 +275,13 @@ cnoreabbrev Qall qall
 
 "" NERDTree configuration
 let g:NERDTreeChDirMode=2
-let g:NERDTreeIgnore=['\.rbc$', '\~$', '\.pyc$', '\.db$', '\.sqlite$', '__pycache__']
+let g:NERDTreeIgnore=['node_modules','\.rbc$', '\~$', '\.pyc$', '\.db$', '\.sqlite$', '__pycache__']
 let g:NERDTreeSortOrder=['^__\.py$', '\/$', '*', '\.swp$', '\.bak$', '\~$']
 let g:NERDTreeShowBookmarks=1
 let g:nerdtree_tabs_focus_on_files=1
 let g:NERDTreeMapOpenInTabSilent = '<RightMouse>'
 let g:NERDTreeWinSize = 50
-set wildignore+=*/tmp/*,*.so,*.swp,*.zip,*.pyc,*.db,*.sqlite
+set wildignore+=*/tmp/*,*.so,*.swp,*.zip,*.pyc,*.db,*.sqlite,*node_modules/
 nnoremap <silent> <F2> :NERDTreeFind<CR>
 nnoremap <silent> <F3> :NERDTreeToggle<CR>
 
@@ -324,13 +352,13 @@ noremap <Leader>v :<C-u>vsplit<CR>
 
 "" Git
 noremap <Leader>ga :Gwrite<CR>
-noremap <Leader>gc :Gcommit<CR>
-noremap <Leader>gsh :Gpush<CR>
-noremap <Leader>gll :Gpull<CR>
-noremap <Leader>gs :Gstatus<CR>
-noremap <Leader>gb :Gblame<CR>
-noremap <Leader>gd :Gvdiff<CR>
-noremap <Leader>gr :Gremove<CR>
+noremap <Leader>gc :Git commit --verbose<CR>
+noremap <Leader>gsh :Git push<CR>
+noremap <Leader>gll :Git pull<CR>
+noremap <Leader>gs :Git<CR>
+noremap <Leader>gb :Git blame<CR>
+noremap <Leader>gd :Gvdiffsplit<CR>
+noremap <Leader>gr :GRemove<CR>
 
 " session management
 nnoremap <leader>so :OpenSession<Space>
@@ -581,4 +609,3 @@ else
   let g:airline_symbols.readonly = ''
   let g:airline_symbols.linenr = ''
 endif
-
