@@ -1,1 +1,0 @@
-gpgconf --launch gpg-agent
