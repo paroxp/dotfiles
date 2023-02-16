@@ -1,0 +1,62 @@
+{ pkgs, ... }:
+
+let
+  customOhMyZshDir = ".config/oh-my-zsh";
+  customZshDir = ".config/zsh";
+in {
+  programs.zsh = {
+    enable = true;
+    dotDir = customZshDir;
+    enableAutosuggestions = true;
+    enableCompletion = true;
+    enableSyntaxHighlighting = true;
+
+    shellAliases = {
+      ip = "ip --color=auto";
+      ls = "ls --color=tty --human-readable";
+      ping = "ping -c 5";
+      update = "sudo nixos-rebuild switch";
+    };
+
+    localVariables = {
+      ZSH_TMUX_AUTOSTART = true;
+      ZSH_TMUX_AUTOCONNECT = true;
+      ZSH_TMUX_AUTOQUIT = true;
+      ZSH_TMUX_CONFIG = "$HOME/.config/tmux/tmux.conf";
+      ZSH_TMUX_ITERM2 = pkgs.stdenv.isDarwin;
+    };
+
+    history = {
+      ignoreDups = true;
+      path = "${customZshDir}/history";
+      size = 10000;
+    };
+
+    oh-my-zsh = {
+      enable = true;
+      custom = customOhMyZshDir;
+      plugins = [
+        "git"
+        "gitfast"
+        "tmux"
+        "z"
+      ];
+      theme = "paroxp";
+    };
+
+    plugins = with pkgs; [
+      {
+        name = "zsh-nix-shell";
+        file = "nix-shell.plugin.zsh";
+        src = fetchFromGitHub {
+          owner = "chisui";
+          repo = "zsh-nix-shell";
+          rev = "v0.5.0";
+          sha256 = "0za4aiwwrlawnia4f29msk822rj9bgcygw6a8a6iikiwzjjz0g91";
+        };
+      }
+    ];
+  };
+
+  home.file."${customOhMyZshDir}/themes/paroxp.zsh-theme".source = ./files/prompt.zsh-theme;
+}
