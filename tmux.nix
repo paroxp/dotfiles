@@ -16,6 +16,9 @@
     shortcut = "a";
 
     extraConfig = ''
+      # Clear screen and buffer scroll
+      bind -n C-k send-keys C-l \; run-shell "sleep .3s" \; clear-history
+
       # pass through xterm keys
       setw -g xterm-keys on
 
