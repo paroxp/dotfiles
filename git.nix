@@ -1,4 +1,4 @@
-{ pkgs, ... }:
+{ config, pkgs, ... }:
 
 {
   programs.git = with pkgs; {
@@ -10,13 +10,14 @@
     signing.signByDefault = true;
 
     extraConfig = {
-      core = { whitespace = "trailing-space,space-before-tab"; editor = "vim"; };
       color = { ui = "auto"; };
+      core = { whitespace = "trailing-space,space-before-tab"; editor = "vim"; };
+      github = { user = "paroxp"; };
+      init = { defaultBranch = "main"; };
       pull = { rebase = "true"; };
       push = { default = "tracking"; };
       rebase = { autoSquash = "true"; };
       rerere = { enabled = "false"; };
-      github = { user = "paroxp"; };
     };
 
     aliases = {
