@@ -1,6 +1,8 @@
 {
   allowUnfree = true;
 
+  pinentry = "gnome3"; # "curses" "tty" "gtk2" "emacs" "gnome3" "qt"
+
   user = {
     fullName = "Rafal Proszowski";
     name = "rafal";
