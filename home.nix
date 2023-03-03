@@ -1,6 +1,6 @@
 { pkgs, ... }:
 
-{
+let cfg = import ./config.nix; in {
   imports = [ ./devenv.nix ./git.nix ./gpg.nix ./tmux.nix ./vim.nix ./vscode.nix ./zsh.nix ];
 
   programs = {
@@ -8,8 +8,8 @@
   };
 
   home = {
-    username = "rafal";
-    homeDirectory = "/home/rafal";
+    username = cfg.user.name;
+    homeDirectory = "/home/${cfg.user.name}";
 
     stateVersion = "22.11";
 
