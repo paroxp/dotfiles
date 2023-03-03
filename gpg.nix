@@ -1,6 +1,6 @@
 { ... }:
 
-{
+let cfg = import ./config.nix; in {
   programs.gpg.settings = {
     auto-key-locate = "keyserver";
     keyserver = "hkps://keyserver.ubuntu.com";
@@ -29,5 +29,6 @@
     defaultCacheTtl = 60;
     enableSshSupport = true;
     maxCacheTtl = 120;
+    pinentryFlavor = cfg.pinentry;
   };
 }
