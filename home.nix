@@ -28,7 +28,5 @@ let cfg = import ./config.nix; in {
     };
   };
 
-  xdg.systemDirs.data = [
-    # "$HOME/.nix-profile/share"
-  ];
+  targets.genericLinux.enable = pkgs.stdenv.isLinux;
 }
