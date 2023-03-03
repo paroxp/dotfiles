@@ -1,18 +1,18 @@
-{ config, pkgs, ... }:
+{ pkgs, ... }:
 
-{
+let cfg = import ./config.nix; in {
   programs.git = with pkgs; {
     enable = true;
     package = gitAndTools.gitFull;
-    userEmail = "paroxp@gmail.com";
-    userName = "Rafal Proszowski";
-    signing.key = "0xC4CE726F8465B7FC";
+    userEmail = cfg.user.email;
+    userName = cfg.user.fullName;
+    signing.key = cfg.user.gpgID;
     signing.signByDefault = true;
 
     extraConfig = {
       color = { ui = "auto"; };
       core = { whitespace = "trailing-space,space-before-tab"; editor = "vim"; };
-      github = { user = "paroxp"; };
+      github = { user = cfg.user.github; };
       init = { defaultBranch = "main"; };
       pull = { rebase = "true"; };
       push = { default = "tracking"; };
