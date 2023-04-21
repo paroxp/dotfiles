@@ -41,7 +41,6 @@ in {
         "tmux"
         "z"
       ];
-      theme = "paroxp";
     };
 
     plugins = with pkgs; [
@@ -57,6 +56,4 @@ in {
       }
     ];
   };
-
-  home.file."${customOhMyZshDir}/themes/paroxp.zsh-theme".source = ./files/prompt.zsh-theme;
 }
