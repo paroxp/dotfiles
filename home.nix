@@ -1,11 +1,22 @@
 { pkgs, ... }:
 
 let cfg = import ./config.nix; in {
-  imports = [ ./devenv.nix ./git.nix ./gpg.nix ./tmux.nix ./vim.nix ./vscode.nix ./zsh.nix ];
+  imports = [
+    ./devenv.nix
+    ./git.nix
+    ./gpg.nix
+    ./starship.nix
+    ./tmux.nix
+    ./vim.nix
+    ./vscode.nix
+    ./zsh.nix
+  ];
 
   programs = {
     home-manager.enable = true;
   };
+
+  fonts.fontconfig.enable = true;
 
   home = {
     username = cfg.user.name;
@@ -15,6 +26,7 @@ let cfg = import ./config.nix; in {
 
     packages = with pkgs; [
       _1password
+      (pkgs.nerdfonts.override { fonts = [ "FiraCode" ]; })
     ];
 
     sessionVariables = with pkgs; {
