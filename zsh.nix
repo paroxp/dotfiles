@@ -36,10 +36,7 @@ in {
       enable = true;
       custom = customOhMyZshDir;
       plugins = [
-        "git"
-        "gitfast"
         "tmux"
-        "z"
       ];
     };
 
