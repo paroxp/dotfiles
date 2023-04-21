@@ -7,7 +7,7 @@
     baseIndex = 1;
     clock24 = true;
     customPaneNavigationAndResize = true;
-    escapeTime = 0;
+    escapeTime = 50;
     historyLimit = 10000;
     keyMode = "vi";
     mouse = true;
