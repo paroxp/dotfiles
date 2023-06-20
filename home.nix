@@ -22,7 +22,7 @@ let cfg = import ./config.nix; in {
     username = cfg.user.name;
     homeDirectory = "/home/${cfg.user.name}";
 
-    stateVersion = "22.11";
+    stateVersion = "23.05";
 
     packages = with pkgs; [
       _1password
