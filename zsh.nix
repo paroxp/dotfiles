@@ -7,9 +7,9 @@ in {
   programs.zsh = {
     enable = true;
     dotDir = customZshDir;
-    enableAutosuggestions = true;
     enableCompletion = true;
-    enableSyntaxHighlighting = true;
+    autosuggestion.enable = true;
+    syntaxHighlighting.enable = true;
 
     shellAliases = {
       ip = "ip --color=auto";
