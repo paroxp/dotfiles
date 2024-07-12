@@ -1,4 +1,4 @@
-{ ... }:
+{ pkgs, ... }:
 
 let cfg = import ./config.nix; in {
   programs.gpg = {
@@ -34,6 +34,6 @@ let cfg = import ./config.nix; in {
     enableSshSupport = true;
     enableExtraSocket = true;
     maxCacheTtl = 120;
-    pinentryFlavor = cfg.pinentry;
+    pinentryPackage = pkgs.pinentry;
   };
 }
