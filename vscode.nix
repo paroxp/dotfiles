@@ -22,7 +22,7 @@
       editorconfig.editorconfig
       golang.go
       hashicorp.terraform
-      matklad.rust-analyzer
+      rust-lang.rust-analyzer
       streetsidesoftware.code-spell-checker
     ];
   };
