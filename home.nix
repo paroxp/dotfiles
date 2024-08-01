@@ -1,8 +1,9 @@
 { pkgs, ... }:
 
-let cfg = import ./config.nix; in {
+let cfg = import ./config.nix; inherit (pkgs) stdenv; in {
   imports = [
     ./devenv.nix
+    ./editorconfig.nix
     ./git.nix
     ./gpg.nix
     ./starship.nix
