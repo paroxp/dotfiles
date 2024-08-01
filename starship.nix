@@ -14,7 +14,7 @@
         "$directory"
         "$git_branch"
         "$git_commit"
-        "$git_state"
+        "$git_status"
         "$git_metrics"
         "$line_break"
         "$\{custom.greet\}"
