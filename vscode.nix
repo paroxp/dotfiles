@@ -12,6 +12,7 @@
       "cSpell.enableFiletypes" = [
         "ruby"
       ];
+      "window.menuBarVisibility" = "toggle";
     };
 
     extensions = with pkgs.vscode-extensions; [
