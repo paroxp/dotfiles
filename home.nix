@@ -23,7 +23,7 @@ let cfg = import ./config.nix; inherit (pkgs) stdenv; in {
     username = cfg.user.name;
     homeDirectory = "/home/${cfg.user.name}";
 
-    stateVersion = "23.05";
+    stateVersion = "24.05";
 
     packages = with pkgs; [
       _1password
