@@ -34,6 +34,8 @@ let cfg = import ./config.nix; in {
     enableSshSupport = true;
     enableExtraSocket = true;
     maxCacheTtl = 120;
-    pinentryPackage = pkgs.pinentry;
+    pinentry = {
+      package = pkgs.pinentry;
+    };
   };
 }
