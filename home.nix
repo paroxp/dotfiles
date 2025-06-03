@@ -34,6 +34,8 @@ let cfg = import ./config.nix; inherit (pkgs) stdenv; in {
       EDITOR = neovim;
       LESS = "-R";
       PATH = builtins.concatStringsSep ":" [
+        "$HOME/.nix-profile/bin"
+        "/nix/var/nix/profiles/default/bin"
         "/usr/local/bin"
         "$HOME/.local/bin"
         "$PATH"
