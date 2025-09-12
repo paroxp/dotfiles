@@ -26,7 +26,7 @@ let cfg = import ./config.nix; inherit (pkgs) stdenv; in {
     stateVersion = "24.05";
 
     packages = with pkgs; [
-      (pkgs.nerdfonts.override { fonts = [ "FiraCode" ]; })
+      pkgs.nerd-fonts.fira-code
     ];
 
     sessionVariables = with pkgs; {
