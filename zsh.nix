@@ -1,8 +1,8 @@
-{ pkgs, ... }:
+{ pkgs, config, ... }:
 
 let
-  customOhMyZshDir = ".config/oh-my-zsh";
-  customZshDir = ".config/zsh";
+  customOhMyZshDir = "${config.xdg.configHome}/oh-my-zsh";
+  customZshDir = "${config.xdg.configHome}/zsh";
 in {
   programs.zsh = {
     enable = true;
