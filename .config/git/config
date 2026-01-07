@@ -1,0 +1,50 @@
+[alias]
+	branch = "branch -ra"
+	ca = "commit --amend"
+	caa = "commit -a --amend -C HEAD"
+	co = "checkout"
+	diff = "diff --word-diff"
+	grep = "grep -Ii"
+	ll = "log --pretty=format:\"%C(yellow)%h%Cred%d\\ %Creset%s%Cblue\\ [%cn]\" --decorate --numstat"
+	ls = "log --pretty=format:\"%C(green)%h\\ %C(yellow)[%ad]%Cred%d\\ %Creset%s%Cblue\\ [%cn]\" --decorate --date=relative"
+	pushf = "push --force-with-lease"
+	status = "status -s"
+
+[color]
+	ui = "auto"
+
+[commit]
+	gpgSign = true
+
+[core]
+	editor = "nvim"
+	whitespace = "trailing-space,space-before-tab"
+
+[github]
+	user = "paroxp"
+
+[gpg]
+	format = "openpgp"
+
+[init]
+	defaultBranch = "main"
+
+[pull]
+	rebase = "true"
+
+[push]
+	default = "tracking"
+
+[rebase]
+	autoSquash = "true"
+
+[rerere]
+	enabled = "false"
+
+[tag]
+	gpgSign = true
+
+[user]
+	email = "git@paroxp.com"
+	name = "Rafal Proszowski"
+	signingKey = "0xC4CE726F8465B7FC"
