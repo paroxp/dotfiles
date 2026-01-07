@@ -1,0 +1,15 @@
+{
+  "cSpell.enableFiletypes": [
+    "*",
+    "!json",
+    "!yaml"
+  ],
+  "cSpell.language": "en-GB",
+  "editor.rulers": [
+    80,
+    120
+  ],
+  "files.autoSave": "onFocusChange",
+  "window.menuBarVisibility": "toggle",
+  "workbench.colorTheme": "Default Dark+"
+}
