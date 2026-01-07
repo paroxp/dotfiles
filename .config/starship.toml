@@ -1,0 +1,61 @@
+format = "$cmd_duration$username$hostname${custom.root}${custom.user}$directory$git_branch$git_commit$git_status$git_metrics$line_break${custom.greet}$character"
+
+[character]
+error_symbol = "[→](bold red)"
+success_symbol = "[→](bold green)"
+
+[cmd_duration]
+format = "took [$duration]($style)\n"
+
+[custom.greet]
+command = "echo $GREET"
+format = "[\\($output\\)]($style) "
+style = "yellow"
+when = "test \"$GREET\" != \"\""
+
+[custom.root]
+format = "[$symbol]($style) "
+style = "bold red"
+symbol = "#"
+when = "test \"$USER\" = \"root\""
+
+[custom.user]
+format = "[$symbol]($style) "
+style = "bold blue"
+symbol = "\\$"
+when = "test \"$USER\" != \"root\""
+
+[directory]
+style = "bold yellow"
+truncate_to_repo = false
+truncation_symbol = "../"
+
+[git_branch]
+format = "on git:[$branch(:remote_branch)]($style) "
+style = "bold blue"
+
+[git_commit]
+format = "on git:[$hash$tag]($style) "
+style = "bold blue"
+
+[git_status]
+ahead = "[⇡ ${count}](blue)"
+behind = "[⇣ ${count}](red)"
+conflicted = "[=](bright-red)"
+deleted = "[✘](dimmed red)"
+diverged = "[⇕]( [${ahead_count}](blue)/[${behind_count}](red)"
+format = "[$all_status$ahead_behind]($style) "
+modified = "[!](bright-red)"
+renamed = "[»](dimmed blue)"
+staged = "[+](dimmed green)"
+stashed = "[$](purple)"
+style = "bold"
+untracked = "[?](red)"
+
+[hostname]
+format = "[@$hostname]($style) "
+style = "green"
+
+[username]
+format = "[$user]($style)"
+style_user = "yellow"
