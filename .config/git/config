@@ -45,6 +45,6 @@
 	gpgSign = true
 
 [user]
-	email = "git@paroxp.com"
+	email = "git@paroxp.dev"
 	name = "Rafal Proszowski"
 	signingKey = "0xC4CE726F8465B7FC"
