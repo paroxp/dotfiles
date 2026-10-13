@@ -1,0 +1,55 @@
+#!/bin/sh
+# Pick a pinentry for whoever is asking. gpg-agent runs this with the
+# environment of the requesting session, so the choice is made per request.
+# See ~/YUBIKEY.md.
+#
+# Force a choice from a shell with: export PINENTRY_USER_DATA=tty  (or =gui)
+
+PATH="$PATH:/opt/homebrew/bin:/usr/local/bin:/usr/bin:/bin"
+
+# First one found wins. pinentry-x11 is Debian's "preferred GUI" alternative.
+gui="pinentry-mac pinentry-x11 pinentry-gnome3 pinentry-qt pinentry-qt5 pinentry-gtk-2 pinentry-gtk2 pinentry-gtk pinentry-fltk"
+tty="pinentry-curses pinentry-tty pinentry"
+
+case "$PINENTRY_USER_DATA" in
+  tty|curses) mode=tty ;;
+  gui) mode=gui ;;
+  *)
+    mode=tty
+    if [ "$(uname -s)" = Darwin ]; then
+      mode=gui
+    else
+      # A request typed on a kernel console never wants a GUI dialog, even if
+      # the agent still remembers a display from another session.
+      case "$XDG_SESSION_TYPE:$GPG_TTY" in
+        wayland:*|x11:*) console=no ;;
+        *:/dev/tty[0-9]*|*:/dev/ttyv[0-9]*) console=yes ;;
+        *) console=no ;;
+      esac
+      if [ "$console" = no ]; then
+        case "$WAYLAND_DISPLAY" in
+          "") sock= ;;
+          /*) sock=$WAYLAND_DISPLAY ;;
+          *) sock=${XDG_RUNTIME_DIR:-/run/user/$(id -u)}/$WAYLAND_DISPLAY ;;
+        esac
+        # Check the socket: WAYLAND_DISPLAY can outlive the compositor.
+        if [ -n "$sock" ] && [ -S "$sock" ]; then
+          mode=gui
+        elif [ -n "$DISPLAY" ]; then
+          mode=gui
+        fi
+      fi
+    fi
+    ;;
+esac
+
+if [ "$mode" = gui ]; then
+  for p in $gui; do
+    command -v "$p" >/dev/null 2>&1 && exec "$p" "$@"
+  done
+fi
+for p in $tty; do
+  command -v "$p" >/dev/null 2>&1 && exec "$p" "$@"
+done
+echo "pinentry-auto: no pinentry program found" >&2
+exit 1
