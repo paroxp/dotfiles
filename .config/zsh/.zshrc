@@ -9,8 +9,15 @@ autoload -U compinit; compinit
 eval "$(starship init zsh)"
 source <(fzf --zsh)
 
-export GPG_TTY=$(tty)
-eval "$(gpg-agent --daemon)"
+# GnuPG / YubiKey. See ~/YUBIKEY.md.
+if command -v gpgconf >/dev/null 2>&1; then
+  export GPG_TTY=$(tty)
+  if [ -z "$SSH_CONNECTION" ] || [ -z "$SSH_AUTH_SOCK" ]; then
+    export SSH_AUTH_SOCK=$(gpgconf --list-dirs agent-ssh-socket)
+  fi
+  [ -n "$SSH_CONNECTION" ] && export PINENTRY_USER_DATA=tty
+  gpg-connect-agent updatestartuptty /bye >/dev/null 2>&1
+fi
 
 bindkey -e
 bindkey "^[[1;3C" forward-word
