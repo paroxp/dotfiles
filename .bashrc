@@ -8,7 +8,7 @@
 eval "$(starship init bash)"
 source <(fzf --bash)
 
-# GnuPG / YubiKey. See ~/YUBIKEY.md.
+# GnuPG / YubiKey. See ~/.github/YUBIKEY.md.
 if command -v gpgconf >/dev/null 2>&1; then
   export GPG_TTY=$(tty)
   if [ -z "$SSH_CONNECTION" ] || [ -z "$SSH_AUTH_SOCK" ]; then

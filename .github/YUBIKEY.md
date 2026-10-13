@@ -114,7 +114,7 @@ echo $GPG_TTY                      # /dev/ttyN, /dev/pts/N or /dev/ttysNNN
 gpg --card-status                  # card visible
 ssh-add -L                         # shows "... cardno:..." key
 gpg-connect-agent 'scd reset' /bye # lock the card again
-ssh -T git@github.com              # pinentry must appear in THIS terminal
+ssh -T git@codeberg.org            # pinentry must appear in THIS terminal
 ```
 
 Repeat the last two lines from a second console, and from a terminal inside a

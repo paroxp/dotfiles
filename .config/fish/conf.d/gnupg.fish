@@ -1,4 +1,4 @@
-# GnuPG / YubiKey. See ~/YUBIKEY.md.
+# GnuPG / YubiKey. See ~/.github/YUBIKEY.md.
 command -q gpgconf; or return
 
 # Use gpg-agent as the SSH agent, unless an agent was forwarded to us.
