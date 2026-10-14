@@ -29,3 +29,10 @@ export LESS="-R"
 export FZF_DEFAULT_OPTS="--color=16,prompt:blue,pointer:yellow,hl:yellow,hl+:yellow,marker:green"
 
 PS1='[\u@\h \W]\$ '
+
+# Offer to attach to a tmux session; see ~/.local/bin/tmux-pick.
+# TMUX_PICKED stops shells started from this one from asking again.
+if [ -z "$TMUX_PICKED" ] && [ -x "$HOME/.local/bin/tmux-pick" ]; then
+  export TMUX_PICKED=1
+  "$HOME/.local/bin/tmux-pick"
+fi

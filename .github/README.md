@@ -54,7 +54,7 @@ config remote set-url --push origin ssh://git@codeberg.org/paroxp/dotfiles.git
 # 7. Git does not store permissions; ssh and gpg insist on these
 chmod 700 ~/.gnupg ~/.ssh
 chmod 600 ~/.ssh/config ~/.gnupg/*.conf
-chmod 755 ~/.local/bin/pinentry-auto
+chmod 755 ~/.local/bin/pinentry-auto ~/.local/bin/tmux-pick
 ```
 
 Open a new shell. `config` is now defined for fish
@@ -87,6 +87,16 @@ Rules of thumb:
 - Machine-specific differences can live on a branch per machine
   (`config switch -c <name>`), rebased on `main`.
 
+## tmux on start-up
+
+A new interactive fish, bash or zsh shell runs `~/.local/bin/tmux-pick`, which
+lists running tmux sessions to attach to, plus **New session...** and **No
+tmux**. `Esc` means no tmux, and detaching from tmux returns to the plain shell.
+
+It stays out of the way inside tmux, nvim's `:terminal`, VS Code's terminal and
+shells started from a shell that already asked. To skip it, set `NO_TMUX=1`
+in the environment.
+
 ## What is in here
 
 | Area | Files |
@@ -95,7 +105,7 @@ Rules of thumb:
 | Git | `.config/git/config`, `.config/git/ignore`, `.editorconfig` |
 | GnuPG, SSH, YubiKey | `.gnupg/*.conf`, `.ssh/config`, `.local/bin/pinentry-auto`, [YUBIKEY.md](YUBIKEY.md) |
 | Editors | `.config/nvim/`, `.config/Code/User/settings.json` |
-| Terminal | `.config/tmux/tmux.conf`, `.local/share/konsole/` |
+| Terminal | `.config/tmux/tmux.conf`, `.local/bin/tmux-pick`, `.local/share/konsole/` |
 
 The shell configuration expects these to be installed, and shells print errors
 at start-up until they are: `fish`, `starship`, `fzf`, `neovim`, `tmux`,
