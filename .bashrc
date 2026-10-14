@@ -5,6 +5,14 @@
 # If not running interactively, don't do anything
 [[ $- != *i* ]] && return
 
+# asdf: put its shims first on PATH, as conf.d/asdf.fish does for fish
+asdf_shims="${ASDF_DATA_DIR:-$HOME/.asdf}/shims"
+case ":$PATH:" in
+  *":$asdf_shims:"*) ;;
+  *) export PATH="$asdf_shims:$PATH" ;;
+esac
+unset asdf_shims
+
 eval "$(starship init bash)"
 source <(fzf --bash)
 
