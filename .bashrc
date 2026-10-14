@@ -26,5 +26,6 @@ alias ping='ping -c 5'
 
 export EDITOR="nvim"
 export LESS="-R"
+export FZF_DEFAULT_OPTS="--color=16,prompt:blue,pointer:yellow,hl:yellow,hl+:yellow,marker:green"
 
 PS1='[\u@\h \W]\$ '
