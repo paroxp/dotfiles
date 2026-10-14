@@ -1,0 +1,65 @@
+#!/bin/sh
+# Offer to attach to a tmux session when a new interactive shell starts.
+# Called from the end of fish, bash and zsh start-up; see ~/.github/README.md.
+#
+# Lists running sessions plus "New session" and "No tmux". Esc picks "No tmux",
+# and detaching from tmux returns to the plain shell this was called from.
+#
+# Skip it for a shell with: export NO_TMUX=1
+
+# Not where tmux belongs: already inside tmux, an editor terminal, a dumb
+# terminal, or no terminal at all.
+[ -n "$TMUX" ] && exit 0
+[ -n "$NO_TMUX" ] && exit 0
+[ -n "$NVIM" ] && exit 0
+[ "$TERM_PROGRAM" = vscode ] && exit 0
+[ "$TERM" = dumb ] && exit 0
+[ -t 0 ] && [ -t 1 ] || exit 0
+command -v tmux >/dev/null 2>&1 || exit 0
+
+# One line per choice: "<action>:<session>:<label>". tmux does not allow ":"
+# in session names, so it is a safe separator.
+menu() {
+  tmux list-sessions 2>/dev/null \
+    -F "a:#{session_name}:#{session_name}  (#{session_windows} window#{?#{!=:#{session_windows},1},s,}#{?session_attached, attached,})"
+  echo 'n::New session...'
+  echo 'x::No tmux'
+}
+
+choose_fzf() {
+  menu | fzf --delimiter=: --with-nth=3.. --no-multi \
+    --height=40% --reverse --prompt='tmux> ' \
+    --header='Enter: open   Esc: no tmux' | cut -d: -f1,2
+}
+
+choose_plain() {
+  choices=$(menu)
+  printf '%s\n' "$choices" | cut -d: -f3- | awk '{ printf "%2d) %s\n", NR, $0 }' >&2
+  printf 'tmux> ' >&2
+  read -r n
+  case "$n" in
+    ''|*[!0-9]*) ;;
+    *) printf '%s\n' "$choices" | sed -n "${n}p" | cut -d: -f1,2 ;;
+  esac
+}
+
+if command -v fzf >/dev/null 2>&1; then
+  choice=$(choose_fzf)
+else
+  choice=$(choose_plain)
+fi
+
+case "$choice" in
+  a:*)
+    exec tmux attach-session -t "=${choice#a:}"
+    ;;
+  n:)
+    printf 'Session name (blank for a number): '
+    read -r name
+    if [ -n "$name" ]; then
+      exec tmux new-session -A -s "$name"
+    fi
+    exec tmux new-session
+    ;;
+esac
+exit 0
