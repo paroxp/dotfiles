@@ -5,7 +5,7 @@ vim.g.mapleader = " "
 vim.g.maplocalleader = " "
 
 -- Disable the space key
-map({ "n", "v" }, "<Space>", "<Nop>", { expr = true, silent = true })
+map({ "n", "v" }, "<Space>", "<Nop>", { silent = true })
 
 -- Better split navigation
 map("n", "<C-h>", "<C-w>h", { desc = "Go to left window", remap = true })
@@ -34,9 +34,6 @@ map(
   "<cmd>vertical resize +2<CR>",
   { desc = "Increase window width" }
 )
-
--- Open lazy.nvim
-map("n", "<leader>l", vim.cmd.Lazy, { desc = "Open lazy.nvim" })
 
 -- Better indenting
 map("v", "<", "<gv")
