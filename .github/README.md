@@ -40,8 +40,12 @@ config checkout
 Then finish the set-up:
 
 ```sh
-# 4. Only show files I have chosen to track in `config status`
+# 4. Only show files I have chosen to track in `config status`, and refuse
+#    to add the per-machine files (see "Per-machine settings")
 config config --local status.showUntrackedFiles no
+printf '%s\n' /.config/git/config.local /.config/shell/local.sh \
+  /.config/fish/local.fish /.config/tmux/local.conf /.ssh/config.local \
+  >> ~/.dotfiles/info/exclude
 
 # 5. A bare clone has no remote-tracking branch; add it
 config config --local remote.origin.fetch '+refs/heads/*:refs/remotes/origin/*'
@@ -84,8 +88,32 @@ Rules of thumb:
 - Commit messages are `area: summary` (`fish: ...`, `gpg: ...`, `git: ...`).
 - Nothing secret goes in: the repository is public. No private keys, tokens,
   shell history or machine hostnames.
-- Machine-specific differences can live on a branch per machine
-  (`config switch -c <name>`), rebased on `main`.
+- Machine-specific differences go in the untracked local files below, not in
+  tracked files or branches.
+
+## Per-machine settings
+
+Each of these is read if it exists, after (or for ssh, before) the shared
+configuration, so its values win. They are not tracked, and listed in
+`~/.dotfiles/info/exclude` so `config add` refuses them.
+
+| Tool | Local file |
+|---|---|
+| Git | `~/.config/git/config.local` |
+| bash, zsh | `~/.config/shell/local.sh` |
+| fish | `~/.config/fish/local.fish` |
+| tmux | `~/.config/tmux/local.conf` |
+| ssh | `~/.ssh/config.local` |
+
+For example, to turn off commit signing on a machine without the YubiKey:
+
+```sh
+git config --file ~/.config/git/config.local commit.gpgSign false
+git config --file ~/.config/git/config.local tag.gpgSign false
+git config --show-origin commit.gpgSign   # shows which file set it
+```
+
+Avoid `git config --global`: it writes to the tracked `~/.config/git/config`.
 
 ## tmux on start-up
 
