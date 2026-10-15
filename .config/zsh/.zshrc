@@ -16,10 +16,13 @@ bindkey -v '^?' backward-delete-char
 # Switch to normal mode on Esc after 10 ms instead of 400 ms
 KEYTIMEOUT=1
 
-# Alt+Left / Alt+Right move a word back / forward, as in fish, bash and nvim
+# Alt+Left / Alt+Right move a word back / forward and Alt+Backspace deletes
+# one, as in fish, bash and nvim. Like them, stop at / inside paths.
+WORDCHARS=${WORDCHARS//\/}
 for keymap in viins vicmd; do
   bindkey -M $keymap '^[[1;3D' backward-word
   bindkey -M $keymap '^[[1;3C' emacs-forward-word
+  bindkey -M $keymap '^[^?' backward-kill-word
 done
 unset keymap
 
