@@ -1,8 +1,10 @@
 HISTFILE=~/.config/zsh/.histfile
-HISTSIZE=1000
+HISTSIZE=50000
 SAVEHIST=$HISTSIZE
 
-setopt EXTENDED_HISTORY
+# Share history between running shells as commands run; drop duplicates and
+# lines starting with a space
+setopt EXTENDED_HISTORY SHARE_HISTORY HIST_IGNORE_ALL_DUPS HIST_IGNORE_SPACE HIST_REDUCE_BLANKS
 setopt autocd
 autoload -U compinit; compinit
 
