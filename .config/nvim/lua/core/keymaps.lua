@@ -35,6 +35,14 @@ map(
   { desc = "Increase window width" }
 )
 
+-- Alt+Left / Alt+Right move a word back / forward, as in the shells
+map({ "n", "x" }, "<M-Left>", "b", { desc = "Word back" })
+map({ "n", "x" }, "<M-Right>", "w", { desc = "Word forward" })
+map({ "i", "c" }, "<M-Left>", "<S-Left>", { desc = "Word back" })
+map("c", "<M-Right>", "<S-Right>", { desc = "Word forward" })
+-- Stop at the end of the word, like the shells do
+map("i", "<M-Right>", "<C-o>e<Right>", { desc = "Word forward" })
+
 -- Better indenting
 map("v", "<", "<gv")
 map("v", ">", ">gv")

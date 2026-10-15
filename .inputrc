@@ -1,0 +1,7 @@
+# Readline: bash and other programs that use it (python, psql, ...).
+# Keep the system defaults, then add to them.
+$include /etc/inputrc
+
+# Alt+Left / Alt+Right move a word back / forward, as in fish, zsh and nvim
+"\e[1;3D": backward-word
+"\e[1;3C": forward-word
