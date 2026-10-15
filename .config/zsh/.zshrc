@@ -27,12 +27,15 @@ if command -v gpgconf >/dev/null 2>&1; then
   gpg-connect-agent updatestartuptty /bye >/dev/null 2>&1
 fi
 
-bindkey -e
-bindkey "^[[1;3C" forward-word
-bindkey "^[[1;3D" backward-word
-
 set -o vi
 bindkey -v '^?' backward-delete-char
+
+# Alt+Left / Alt+Right move a word back / forward, as in fish, bash and nvim
+for keymap in viins vicmd; do
+  bindkey -M $keymap '^[[1;3D' backward-word
+  bindkey -M $keymap '^[[1;3C' emacs-forward-word
+done
+unset keymap
 
 alias -- config="git --git-dir=${HOME}/.dotfiles/ --work-tree=${HOME}"
 alias -- grep='grep --color=auto'
@@ -42,7 +45,7 @@ alias -- ping='ping -c 5'
 
 export EDITOR="nvim"
 export LESS="-R"
-export FZF_DEFAULT_OPTS="--color=16,prompt:blue,pointer:yellow,hl:yellow,hl+:yellow,marker:green"
+export FZF_DEFAULT_OPTS="--color=16,prompt:blue,pointer:yellow,hl:yellow,hl+:yellow,marker:green --bind=alt-left:backward-word,alt-right:forward-word"
 
 # Offer to attach to a tmux session; see ~/.local/bin/tmux-pick.
 # TMUX_PICKED stops shells started from this one from asking again.

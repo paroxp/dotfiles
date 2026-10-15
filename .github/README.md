@@ -101,7 +101,7 @@ in the environment.
 
 | Area | Files |
 |---|---|
-| Shells | `.config/fish/`, `.bashrc`, `.config/zsh/.zshrc`, `.config/starship.toml` |
+| Shells | `.config/fish/`, `.bashrc`, `.config/zsh/.zshrc`, `.inputrc`, `.config/starship.toml` |
 | Git | `.config/git/config`, `.config/git/ignore`, `.editorconfig` |
 | GnuPG, SSH, YubiKey | `.gnupg/*.conf`, `.ssh/config`, `.local/bin/pinentry-auto`, [YUBIKEY.md](YUBIKEY.md) |
 | Editors | `.config/nvim/`, `.config/Code/User/settings.json` |
