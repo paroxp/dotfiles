@@ -1,0 +1,8 @@
+{
+  "theme": "auto",
+  "permissions": {
+    "ask": [
+      "Bash(git push:*)"
+    ]
+  }
+}
