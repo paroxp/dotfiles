@@ -79,3 +79,7 @@ $RECYCLE.BIN/
 
 # asdf
 .tool-versions
+
+# Claude Code: personal per-project overrides
+.claude/settings.local.json
+CLAUDE.local.md
