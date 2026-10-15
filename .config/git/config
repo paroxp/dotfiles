@@ -44,3 +44,8 @@
 	email = "git@paroxp.dev"
 	name = "Rafal Proszowski"
 	signingKey = "0xC4CE726F8465B7FC"
+
+# Per-machine overrides, not tracked; read last so they win. Change them with
+# git config --file ~/.config/git/config.local <key> <value>
+[include]
+	path = config.local

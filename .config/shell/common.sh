@@ -29,6 +29,11 @@ export EDITOR="nvim"
 export LESS="-R"
 export FZF_DEFAULT_OPTS="--color=16,prompt:blue,pointer:yellow,hl:yellow,hl+:yellow,marker:green --bind=alt-left:backward-word,alt-right:forward-word"
 
+# Per-machine settings, not tracked
+if [ -r ~/.config/shell/local.sh ]; then
+  . ~/.config/shell/local.sh
+fi
+
 # Offer to attach to a tmux session; see ~/.local/bin/tmux-pick.
 # TMUX_PICKED stops shells started from this one from asking again.
 if [ -z "$TMUX_PICKED" ] && [ -x "$HOME/.local/bin/tmux-pick" ]; then
