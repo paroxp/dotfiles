@@ -21,9 +21,19 @@ fi
 
 alias config="git --git-dir=${HOME}/.dotfiles/ --work-tree=${HOME}"
 alias grep='grep --color=auto'
-alias ip='ip --color=auto'
-alias ls='ls --color=tty --human-readable'
 alias ping='ping -c 5'
+
+# GNU ls (Linux) and BSD ls (macOS) take different options for the same thing
+if command ls --version >/dev/null 2>&1; then
+  alias ls='ls --color=tty --human-readable'
+else
+  alias ls='ls -G -h'
+fi
+
+# iproute2's ip is Linux only
+if [ "$(uname -s)" = Linux ]; then
+  alias ip='ip --color=auto'
+fi
 
 export EDITOR="nvim"
 export LESS="-R"
