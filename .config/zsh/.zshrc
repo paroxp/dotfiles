@@ -13,6 +13,8 @@ source <(fzf --zsh)
 
 set -o vi
 bindkey -v '^?' backward-delete-char
+# Switch to normal mode on Esc after 10 ms instead of 400 ms
+KEYTIMEOUT=1
 
 # Alt+Left / Alt+Right move a word back / forward, as in fish, bash and nvim
 for keymap in viins vicmd; do
