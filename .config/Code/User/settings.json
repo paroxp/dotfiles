@@ -11,5 +11,5 @@
   ],
   "files.autoSave": "onFocusChange",
   "window.menuBarVisibility": "toggle",
-  "workbench.colorTheme": "Default Dark+"
+  "workbench.colorTheme": "Dark+"
 }
