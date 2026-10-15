@@ -55,10 +55,10 @@ config branch --set-upstream-to=origin/main main
 # 6. Push over SSH (YubiKey), keep fetching over HTTPS
 config remote set-url --push origin ssh://git@codeberg.org/paroxp/dotfiles.git
 
-# 7. Git does not store permissions; ssh and gpg insist on these
+# 7. Git keeps only the executable bit, not who may read or write files;
+#    ssh and gpg refuse or warn about files others can access
 chmod 700 ~/.gnupg ~/.ssh
 chmod 600 ~/.ssh/config ~/.gnupg/*.conf
-chmod 755 ~/.local/bin/pinentry-auto ~/.local/bin/tmux-pick
 ```
 
 Open a new shell. `config` is now defined for fish
