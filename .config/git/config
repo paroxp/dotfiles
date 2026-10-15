@@ -16,6 +16,12 @@
 	editor = "nvim"
 	whitespace = "trailing-space,space-before-tab"
 
+[diff]
+	algorithm = "histogram"
+
+[fetch]
+	prune = "true"
+
 [github]
 	user = "paroxp"
 
@@ -25,14 +31,18 @@
 [init]
 	defaultBranch = "main"
 
+[merge]
+	conflictStyle = "zdiff3"
+
 [pull]
 	rebase = "true"
 
 [push]
-	default = "tracking"
+	default = "upstream"
 
 [rebase]
 	autoSquash = "true"
+	autoStash = "true"
 
 [rerere]
 	enabled = "false"
