@@ -1,6 +1,6 @@
 [Appearance]
 ColorScheme=Omorfos
-Font=Fira Mono,12,-1,5,400,0,0,0,0,0,0,0,0,0,0,1
+Font=JetBrains Mono,12,-1,5,400,0,0,0,0,0,0,0,0,0,0,1
 UseFontLineChararacters=false
 
 [Cursor Options]

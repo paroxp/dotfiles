@@ -5,6 +5,7 @@
     "!yaml"
   ],
   "cSpell.language": "en-GB",
+  "editor.fontFamily": "'JetBrains Mono', monospace",
   "editor.rulers": [
     80,
     120

@@ -134,6 +134,7 @@ in the environment.
 | GnuPG, SSH, YubiKey | `.gnupg/*.conf`, `.ssh/config`, `.local/bin/pinentry-auto`, [YUBIKEY.md](YUBIKEY.md) |
 | Editors | `.config/nvim/`, `.config/Code/User/settings.json` |
 | Terminal | `.config/tmux/tmux.conf`, `.local/bin/tmux-pick`, `.config/foot/foot.ini`, `.local/share/konsole/` |
+| Fonts | `.config/fontconfig/fonts.conf` |
 
 The shell configuration expects these to be installed, and shells print errors
 at start-up until they are: `fish`, `starship`, `fzf`, `neovim`, `tmux`,
@@ -152,6 +153,18 @@ To change a colour, change it in every terminal definition and in the nvim
 scheme. The one exception to ANSI-only is selection: fish and tmux use the
 brand's navy-3 (`#243364`) there, since bright black is the comment colour and
 too light to put text on.
+
+## Fonts
+
+The brand's fonts are JetBrains Mono for terminals and editors and Inter for
+interface text. foot, Konsole and VS Code ask for JetBrains Mono by name, and
+`.config/fontconfig/fonts.conf` makes them the default `monospace` and
+`sans-serif` for every other program. Until they are installed, programs fall
+back to the system fonts. On Debian:
+
+```sh
+sudo apt install fonts-jetbrains-mono fonts-inter
+```
 
 ## Starting from scratch
 
