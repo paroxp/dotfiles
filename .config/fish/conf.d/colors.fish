@@ -1,6 +1,10 @@
 # Syntax highlighting in ANSI colours, so fish follows the terminal palette
-# (Honukai in Konsole) and matches starship, tmux, fzf and nvim's honukai
-# scheme: blue commands, magenta keywords, green strings, yellow highlights.
+# (omorfos Prism in foot and Konsole) and matches starship, tmux, fzf and
+# nvim's omorfos scheme: blue commands, magenta keywords, green strings,
+# yellow highlights.
+#
+# Selection backgrounds are the brand's navy-3 (243364) rather than an ANSI
+# colour: bright black is the comment colour, too light to put text on.
 #
 # These are globals, so they win over universal values that `fish_config`
 # writes to fish_variables. Change colours here, not through `fish_config`.
@@ -22,8 +26,8 @@ set -g fish_color_autosuggestion brblack
 set -g fish_color_valid_path --underline
 set -g fish_color_cancel -r
 set -g fish_color_history_current --bold
-set -g fish_color_search_match yellow --background=brblack
-set -g fish_color_selection white --bold --background=brblack
+set -g fish_color_search_match yellow --background=243364
+set -g fish_color_selection brwhite --bold --background=243364
 
 # Used by fish's own prompts; starship uses the same colours
 set -g fish_color_user yellow
@@ -37,5 +41,5 @@ set -g fish_color_status red
 set -g fish_pager_color_completion normal
 set -g fish_pager_color_prefix yellow --bold --underline
 set -g fish_pager_color_description brblack --italics
-set -g fish_pager_color_progress brwhite --background=blue
-set -g fish_pager_color_selected_background --background=brblack
+set -g fish_pager_color_progress black --background=cyan
+set -g fish_pager_color_selected_background --background=243364
