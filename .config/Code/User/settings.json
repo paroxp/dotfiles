@@ -11,5 +11,28 @@
   ],
   "files.autoSave": "onFocusChange",
   "window.menuBarVisibility": "toggle",
+  "workbench.colorCustomizations": {
+    "terminal.ansiBlack": "#141C38",
+    "terminal.ansiBlue": "#60A5FA",
+    "terminal.ansiBrightBlack": "#7482B3",
+    "terminal.ansiBrightBlue": "#93C5FD",
+    "terminal.ansiBrightCyan": "#67E8F9",
+    "terminal.ansiBrightGreen": "#A3E635",
+    "terminal.ansiBrightMagenta": "#F9A8D4",
+    "terminal.ansiBrightRed": "#FF8A93",
+    "terminal.ansiBrightWhite": "#F3F5FB",
+    "terminal.ansiBrightYellow": "#FDE047",
+    "terminal.ansiCyan": "#22D3EE",
+    "terminal.ansiGreen": "#84CC16",
+    "terminal.ansiMagenta": "#F472B6",
+    "terminal.ansiRed": "#F8616D",
+    "terminal.ansiWhite": "#B8C0DE",
+    "terminal.ansiYellow": "#FACC15",
+    "terminal.background": "#0C1226",
+    "terminal.foreground": "#E6EAF5",
+    "terminal.selectionBackground": "#243364",
+    "terminalCursor.background": "#0C1226",
+    "terminalCursor.foreground": "#FB923C"
+  },
   "workbench.colorTheme": "Dark+"
 }
