@@ -18,6 +18,6 @@ end
 safe_require("core.options")
 safe_require("core.keymaps")
 
--- Colour scheme, from colors/honukai.lua
-pcall(vim.cmd.colorscheme, "honukai")
+-- Colour scheme, from colors/omorfos.lua
+pcall(vim.cmd.colorscheme, "omorfos")
 
