@@ -3,10 +3,19 @@
     "commit": "",
     "pr": ""
   },
-  "theme": "auto",
   "permissions": {
     "ask": [
       "Bash(git push:*)"
     ]
-  }
+  },
+  "enabledPlugins": {
+    "superpowers@claude-plugins-official": true,
+    "claude-security@anthropic-plugin-directory": true,
+    "mattpocock-skills@claude-plugins-official": true,
+    "code-review@claude-plugins-official": true,
+    "code-simplifier@anthropic-plugin-directory": true,
+    "skill-creator@anthropic-plugin-directory": true,
+    "claude-md-management@anthropic-plugin-directory": true
+  },
+  "theme": "auto"
 }
