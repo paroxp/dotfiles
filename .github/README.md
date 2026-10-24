@@ -133,7 +133,21 @@ in the environment.
 | Git | `.config/git/config`, `.config/git/ignore`, `.editorconfig` |
 | GnuPG, SSH, YubiKey | `.gnupg/*.conf`, `.ssh/config`, `.local/bin/pinentry-auto`, [YUBIKEY.md](YUBIKEY.md) |
 | Editors | `.config/nvim/`, `.config/Code/User/settings.json` |
-| Terminal | `.config/tmux/tmux.conf`, `.local/bin/tmux-pick`, `.local/share/konsole/` |
+| Terminal | `.config/tmux/tmux.conf`, `.local/bin/tmux-pick`, `.config/foot/foot.ini`, `.local/share/konsole/` |
+
+## Colours
+
+Everything uses the [omorfos](https://github.com/omorfos/desktop) brand's
+"Prism" terminal palette: navy background, the brand's spectrum colours
+and an orange cursor. foot, Konsole and VS Code's terminal define the palette;
+fish, starship, tmux, fzf and `git` use its ANSI colours, so they follow
+whichever terminal they run in. nvim has a matching scheme,
+`.config/nvim/colors/omorfos.lua`.
+
+To change a colour, change it in every terminal definition and in the nvim
+scheme. The one exception to ANSI-only is selection: fish and tmux use the
+brand's navy-3 (`#243364`) there, since bright black is the comment colour and
+too light to put text on.
 
 The shell configuration expects these to be installed, and shells print errors
 at start-up until they are: `fish`, `starship`, `fzf`, `neovim`, `tmux`,
