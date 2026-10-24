@@ -135,6 +135,10 @@ in the environment.
 | Editors | `.config/nvim/`, `.config/Code/User/settings.json` |
 | Terminal | `.config/tmux/tmux.conf`, `.local/bin/tmux-pick`, `.config/foot/foot.ini`, `.local/share/konsole/` |
 
+The shell configuration expects these to be installed, and shells print errors
+at start-up until they are: `fish`, `starship`, `fzf`, `neovim`, `tmux`,
+`asdf`, `gnupg`.
+
 ## Colours
 
 Everything uses the [omorfos](https://github.com/omorfos/desktop) brand's
@@ -148,10 +152,6 @@ To change a colour, change it in every terminal definition and in the nvim
 scheme. The one exception to ANSI-only is selection: fish and tmux use the
 brand's navy-3 (`#243364`) there, since bright black is the comment colour and
 too light to put text on.
-
-The shell configuration expects these to be installed, and shells print errors
-at start-up until they are: `fish`, `starship`, `fzf`, `neovim`, `tmux`,
-`asdf`, `gnupg`.
 
 ## Starting from scratch
 
