@@ -1,98 +1,98 @@
 [Background]
-Color=17,22,37
+Color=12,18,38
 
 [BackgroundFaint]
-Color=17,22,37
+Color=12,18,38
 
 [BackgroundIntense]
-Color=17,22,37
+Color=12,18,38
 
 [Color0]
-Color=0,0,0
+Color=20,28,56
 
 [Color0Faint]
-Color=0,0,0
+Color=20,28,56
 
 [Color0Intense]
-Color=85,85,85
+Color=116,130,179
 
 [Color1]
-Color=221,80,48
+Color=248,97,109
 
 [Color1Faint]
-Color=221,80,48
+Color=248,97,109
 
 [Color1Intense]
-Color=225,127,100
+Color=255,138,147
 
 [Color2]
-Color=108,189,58
+Color=132,204,22
 
 [Color2Faint]
-Color=108,189,58
+Color=132,204,22
 
 [Color2Intense]
-Color=127,186,90
+Color=163,230,53
 
 [Color3]
-Color=230,215,45
+Color=250,204,21
 
 [Color3Faint]
-Color=230,215,45
+Color=250,204,21
 
 [Color3Intense]
-Color=255,255,85
+Color=253,224,71
 
 [Color4]
-Color=38,112,252
+Color=96,165,250
 
 [Color4Faint]
-Color=38,112,252
+Color=96,165,250
 
 [Color4Intense]
-Color=93,143,243
+Color=147,197,253
 
 [Color5]
-Color=242,88,185
+Color=244,114,182
 
 [Color5Faint]
-Color=242,88,185
+Color=244,114,182
 
 [Color5Intense]
-Color=250,131,192
+Color=249,168,212
 
 [Color6]
-Color=56,178,218
+Color=34,211,238
 
 [Color6Faint]
-Color=56,178,218
+Color=34,211,238
 
 [Color6Intense]
-Color=120,206,231
+Color=103,232,249
 
 [Color7]
-Color=187,187,187
+Color=184,192,222
 
 [Color7Faint]
-Color=187,187,187
+Color=184,192,222
 
 [Color7Intense]
-Color=255,255,255
+Color=243,245,251
 
 [Foreground]
-Color=186,188,200
+Color=230,234,245
 
 [ForegroundFaint]
-Color=186,188,200
+Color=184,192,222
 
 [ForegroundIntense]
-Color=186,188,200
+Color=243,245,251
 
 [General]
 Anchor=0.5,0.5
 Blur=true
 ColorRandomization=false
-Description=Honukai
+Description=omorfos Prism
 FillStyle=Tile
 Opacity=0.6
 Wallpaper=
