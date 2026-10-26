@@ -5,6 +5,11 @@
 font-family = JetBrains Mono
 font-size = 12
 
+# Breathing room so text doesn't sit on the window edge
+window-padding-x = 12
+window-padding-y = 8
+window-padding-balance = true
+
 # Orange, the one brand colour no ANSI slot uses, so it is always findable
 cursor-color = #FB923C
 cursor-text = #0C1226
