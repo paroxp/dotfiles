@@ -133,7 +133,7 @@ in the environment.
 | Git | `.config/git/config`, `.config/git/ignore`, `.editorconfig` |
 | GnuPG, SSH, YubiKey | `.gnupg/*.conf`, `.ssh/config`, `.local/bin/pinentry-auto`, [YUBIKEY.md](YUBIKEY.md) |
 | Editors | `.config/nvim/`, `.config/Code/User/settings.json` |
-| Terminal | `.config/tmux/tmux.conf`, `.local/bin/tmux-pick`, `.config/foot/foot.ini`, `.config/ghostty/config`, `.local/share/konsole/` |
+| Terminal | `.config/ghostty/config` (the main terminal), `.config/tmux/tmux.conf`, `.local/bin/tmux-pick`, `.config/foot/foot.ini`, `.local/share/konsole/` |
 | Fonts | `.config/fontconfig/fonts.conf` |
 
 The shell configuration expects these to be installed, and shells print errors
@@ -144,10 +144,10 @@ at start-up until they are: `fish`, `starship`, `fzf`, `neovim`, `tmux`,
 
 Everything uses the [omorfos](https://github.com/omorfos/desktop) brand's
 "Prism" terminal palette: navy background, the brand's spectrum colours
-and an orange cursor. foot, Ghostty, Konsole and VS Code's terminal define the
-palette; fish, starship, tmux, fzf and `git` use its ANSI colours, so they
-follow whichever terminal they run in. nvim has a matching scheme,
-`.config/nvim/colors/omorfos.lua`.
+and an orange cursor. Ghostty, the main terminal, defines the palette, and so
+do foot, Konsole and VS Code's terminal; fish, starship, tmux, fzf and `git`
+use its ANSI colours, so they follow whichever terminal they run in. nvim has
+a matching scheme, `.config/nvim/colors/omorfos.lua`.
 
 To change a colour, change it in every terminal definition and in the nvim
 scheme. The one exception to ANSI-only is selection: fish and tmux use the
@@ -157,7 +157,7 @@ too light to put text on.
 ## Fonts
 
 The brand's fonts are JetBrains Mono for terminals and editors and Inter for
-interface text. foot, Ghostty, Konsole and VS Code ask for JetBrains Mono by
+interface text. Ghostty, foot, Konsole and VS Code ask for JetBrains Mono by
 name, and `.config/fontconfig/fonts.conf` makes them the default `monospace` and
 `sans-serif` for every other program. Until they are installed, programs fall
 back to the system fonts. On Debian:
