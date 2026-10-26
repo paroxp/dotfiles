@@ -74,7 +74,7 @@ Next: set up the YubiKey for GPG and SSH by following [YUBIKEY.md](YUBIKEY.md).
 config status
 config diff
 config add ~/.config/foo/foo.conf      # start tracking, or stage a change
-config commit -m "foo: add config"
+config commit -m "feat(foo): add config"
 config push
 config pull
 config ls-files                        # everything that is tracked
@@ -85,7 +85,10 @@ Rules of thumb:
 
 - Always add files by name. `config add .` and `config add -A` would try to add
   the whole home directory.
-- Commit messages are `area: summary` (`fish: ...`, `gpg: ...`, `git: ...`).
+- Commit messages follow [Conventional Commits](https://www.conventionalcommits.org/):
+  `type(area): summary`, such as `feat(fish): ...`, `fix(gpg): ...` or
+  `docs: ...`. Mark a commit that removes or breaks something other machines
+  rely on with `!` and a `BREAKING CHANGE:` footer.
 - Nothing secret goes in: the repository is public. No private keys, tokens,
   shell history or machine hostnames.
 - Machine-specific differences go in the untracked local files below, not in
@@ -176,7 +179,7 @@ config() { git --git-dir="$HOME/.dotfiles/" --work-tree="$HOME" "$@"; }
 config config --local status.showUntrackedFiles no
 config remote add origin ssh://git@codeberg.org/<user>/dotfiles.git
 config add ~/.bashrc
-config commit -m "bash: add bashrc"
+config commit -m "feat(bash): add bashrc"
 config push -u origin main
 ```
 
