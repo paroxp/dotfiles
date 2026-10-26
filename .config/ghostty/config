@@ -1,18 +1,17 @@
-# omorfos Prism, the brand's terminal palette; the same colours and
-# settings as foot.ini, the Konsole profile and nvim's omorfos scheme.
+# omorfos Prism, the brand's terminal palette, for the main terminal.
+# The README lists the other files that share these colours.
 
-# The brand's monospace face, at the size used in Konsole and foot
+# The brand's monospace face
 font-family = JetBrains Mono
 font-size = 12
 
 # Orange, the one brand colour no ANSI slot uses, so it is always findable
 cursor-color = #FB923C
 cursor-text = #0C1226
-# A blinking beam, as in Konsole
 cursor-style = bar
 cursor-style-blink = true
 
-# See-through like Konsole; blur only works where the compositor offers it
+# See-through; macOS and KDE blur what is behind, other compositors don't
 background-opacity = 0.6
 background-blur = true
 
