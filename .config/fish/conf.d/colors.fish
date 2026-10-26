@@ -1,5 +1,5 @@
 # Syntax highlighting in ANSI colours, so fish follows the terminal palette
-# (omorfos Prism in foot and Konsole) and matches starship, tmux, fzf and
+# (omorfos Prism in Ghostty) and matches starship, tmux, fzf and
 # nvim's omorfos scheme: blue commands, magenta keywords, green strings,
 # yellow highlights.
 #
