@@ -1,5 +1,5 @@
 -- omorfos Prism: the omorfos brand palette, matching the terminal colour
--- schemes (foot, Konsole) and the starship prompt.
+-- scheme (Ghostty) and the starship prompt.
 -- The main background is left transparent so the terminal's own background
 -- (and its opacity) shows through, as it does in the shell and tmux.
 --
