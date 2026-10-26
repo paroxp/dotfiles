@@ -17,7 +17,7 @@ cursor-style = bar
 cursor-style-blink = true
 
 # See-through; macOS and KDE blur what is behind, other compositors don't
-background-opacity = 0.6
+background-opacity = 0.75
 background-blur = true
 
 background = #0C1226
