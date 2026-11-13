@@ -51,7 +51,12 @@ per request. In order:
 4. A Wayland socket exists or `DISPLAY` is set: GUI.
 5. Otherwise: terminal pinentry.
 
-"GUI" is the first of these that is installed: `pinentry-mac`, `pinentry-x11`
+"GUI" is omorfos's own `omorfos-pinentry` when the request comes from an
+omorfos session whose `omorfos-ask` is running (its socket is in
+`$XDG_RUNTIME_DIR` and the process exists). `omorfos-ask` only answers the
+`omorfos-pinentry` installed beside it, so that is the one used, wherever it
+is on `PATH`. Otherwise "GUI" is the first of these that is installed:
+`pinentry-mac`, `pinentry-x11`
 (Debian's alternative for the preferred GUI one), `pinentry-gnome3`,
 `pinentry-qt`, `pinentry-qt5`, `pinentry-gtk-2`, `pinentry-gtk2`,
 `pinentry-gtk`, `pinentry-fltk`. "Terminal" is `pinentry-curses`, then
@@ -68,6 +73,11 @@ Known limits:
   guaranteed under other compositors. If no dialog appears, install
   `pinentry-qt` or `pinentry-gtk2` and, on Debian, select it with
   `sudo update-alternatives --config pinentry-x11`.
+- Once `omorfos-pinentry` is chosen it cannot hand over to another pinentry:
+  if `omorfos-ask` stops in the middle of a request, GnuPG reports a failure.
+  Under omorfos, `omorfos-pinentry` also refuses to ask for anything to be
+  confirmed (e.g. keys added with `ssh-add -c`); use
+  `set -x PINENTRY_USER_DATA tty` for those.
 - To prefer a different GUI pinentry on one machine, reorder the `gui=` list.
 - gpg-agent 2.4 expands `~` in `pinentry-program`. If an older GnuPG does not,
   use the absolute path in that machine's `gpg-agent.conf`.

@@ -44,6 +44,21 @@ case "$PINENTRY_USER_DATA" in
 esac
 
 if [ "$mode" = gui ]; then
+  # In an omorfos session, omorfos-ask asks in its own sealed prompt. It only
+  # hears the omorfos-pinentry installed beside it, so take that one rather
+  # than whichever is first on PATH. Checking for the process as well as the
+  # socket skips a socket left behind by a crash: once exec'd, omorfos-pinentry
+  # cannot fall back to another pinentry.
+  runtime=${XDG_RUNTIME_DIR:-/run/user/$(id -u)}
+  if [ -S "$runtime/omorfos-ask" ]; then
+    ask=$(pgrep -u "$(id -u)" -x omorfos-ask 2>/dev/null | head -n 1)
+    exe=${ask:+$(readlink "/proc/$ask/exe" 2>/dev/null)}
+    if [ -n "$exe" ] && [ -x "${exe%/*}/omorfos-pinentry" ]; then
+      # omorfos-pinentry finds the socket through this, with no fallback.
+      export XDG_RUNTIME_DIR="$runtime"
+      exec "${exe%/*}/omorfos-pinentry" "$@"
+    fi
+  fi
   for p in $gui; do
     command -v "$p" >/dev/null 2>&1 && exec "$p" "$@"
   done
