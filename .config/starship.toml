@@ -34,7 +34,7 @@ format = "([\\($env_value\\)]($style) )"
 style = "yellow"
 
 [git_branch]
-format = "on git:[$branch(:remote_branch)]($style) "
+format = "on git:[$branch(:$remote_branch)]($style) "
 style = "bold blue"
 
 [git_commit]
@@ -51,7 +51,7 @@ format = "[$all_status$ahead_behind]($style) "
 modified = "[!](bright-red)"
 renamed = "[»](dimmed blue)"
 staged = "[+](dimmed green)"
-stashed = "[$](purple)"
+stashed = "[\\$](purple)"
 style = "bold"
 untracked = "[?](red)"
 
