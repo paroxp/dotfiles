@@ -16,6 +16,8 @@ config or commit history), follow those where they differ from this file.
   conversation. Pushing is my job. Commit locally and tell me what is ready.
 - Never rewrite history that has already been pushed. Never bypass hooks or signing (`--no-verify`, `--no-gpg-sign`);
   if one fails, fix the cause or stop and tell me.
+- When drafting issues or pull requests for other projects, write in the first person singular ("I", not "we"): I
+  file them, and the responsibility for them is mine.
 
 ## Security
 
