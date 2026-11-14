@@ -17,6 +17,7 @@
     "skill-creator@anthropic-plugin-directory": true,
     "claude-md-management@anthropic-plugin-directory": true
   },
+  "advisorModel": "fable",
   "theme": "auto",
   "switchModelsOnFlag": true
 }
