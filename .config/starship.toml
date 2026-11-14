@@ -1,4 +1,4 @@
-format = "$cmd_duration$username$hostname${custom.root}${custom.user}$directory$git_branch$git_commit$git_status$git_metrics$line_break${env_var.GREET}$character"
+format = "$cmd_duration$username$hostname${custom.root}${custom.user}$directory$git_branch$git_commit$git_status$git_metrics$line_break$character"
 
 [character]
 error_symbol = "[→](bold red)"
@@ -28,10 +28,6 @@ when = "test \"$USER\" != \"root\""
 style = "bold yellow"
 truncate_to_repo = false
 truncation_symbol = "../"
-
-[env_var.GREET]
-format = "([\\($env_value\\)]($style) )"
-style = "yellow"
 
 [git_branch]
 format = "on git:[$branch(:$remote_branch)]($style) "
