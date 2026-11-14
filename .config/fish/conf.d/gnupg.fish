@@ -3,7 +3,11 @@ command -q gpgconf; or return
 
 # Use gpg-agent as the SSH agent, unless an agent was forwarded to us.
 if not set -q SSH_CONNECTION; or not set -q SSH_AUTH_SOCK
-    set -gx SSH_AUTH_SOCK (gpgconf --list-dirs agent-ssh-socket)
+    # A fish started from one that did this inherits the socket; asking
+    # gpgconf again would cost a process on every start, scripts included.
+    if not string match -q '*/S.gpg-agent.ssh' -- "$SSH_AUTH_SOCK"
+        set -gx SSH_AUTH_SOCK (gpgconf --list-dirs agent-ssh-socket)
+    end
 end
 
 if status is-interactive; and isatty stdin
