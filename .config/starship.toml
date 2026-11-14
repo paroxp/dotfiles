@@ -41,6 +41,9 @@ style = "bold blue"
 format = "on git:[$hash$tag]($style) "
 style = "bold blue"
 
+[git_metrics]
+disabled = false
+
 [git_status]
 ahead = "[⇡ ${count}](blue)"
 behind = "[⇣ ${count}](red)"
