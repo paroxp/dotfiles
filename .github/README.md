@@ -143,6 +143,11 @@ The shell configuration expects these to be installed, and shells print errors
 at start-up until they are: `fish`, `starship`, `fzf`, `neovim`, `tmux`,
 `asdf`, `gnupg`.
 
+`.config/fish/conf.d/flatpak.fish` stands in for the flatpak package's fish
+snippet, which runs `flatpak --installations` (about 0.1 s) in every fish,
+scripts included. It runs that snippet only when the login session has not
+already put flatpak's directories on `XDG_DATA_DIRS`.
+
 ## Colours
 
 Everything uses the [omorfos](https://github.com/omorfos/desktop) brand's
