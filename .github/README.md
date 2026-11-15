@@ -169,7 +169,7 @@ are the exception and keep CRLF.
 
 The shell configuration expects these to be installed, and shells print errors
 at start-up until they are: `fish`, `starship`, `fzf`, `neovim`, `tmux`,
-`asdf`, `gnupg`, `ripgrep`.
+`asdf`, `gnupg`. nvim also uses `ripgrep` for `:grep`.
 
 `.config/fish/conf.d/flatpak.fish` stands in for the flatpak package's fish
 snippet, which runs `flatpak --installations` (about 0.1 s) in every fish,
