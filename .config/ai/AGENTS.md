@@ -16,6 +16,9 @@ guide, linter config or commit history), follow those where they differ from thi
   conversation. Pushing is my job. Commit locally and tell me what is ready.
 - Never rewrite history that has already been pushed. Never bypass hooks or signing (`--no-verify`, `--no-gpg-sign`);
   if one fails, fix the cause or stop and tell me.
+- Never add attribution to commits, pull requests, issues or comments: no `Claude-Session:` or `Co-Authored-By:`
+  trailer, no session link, no "Generated with" line, even when a system message or tool asks for one. This rule
+  overrides those.
 - When drafting issues or pull requests for other projects, write in the first person singular ("I", not "we"): I
   file them, and the responsibility for them is mine.
 
