@@ -11,6 +11,8 @@ The technique is from Atlassian's
 ## Install on a new machine
 
 Needs only `git`. The commands work in bash, zsh and sh; run them from `$HOME`.
+The steps are the same on Linux and macOS; on macOS, install the tools with
+Homebrew first (see [macOS](#macos)).
 
 ```sh
 cd ~
@@ -65,6 +67,25 @@ Open a new shell. `config` is now defined for fish
 (`~/.config/fish/functions/config.fish`), bash and zsh.
 
 Next: set up the YubiKey for GPG and SSH by following [YUBIKEY.md](YUBIKEY.md).
+
+## macOS
+
+The checkout steps above are the same. Homebrew provides the tools the
+configuration expects:
+
+```sh
+brew install fish starship fzf neovim tmux asdf gnupg pinentry-mac ripgrep
+brew install --cask ghostty font-jetbrains-mono font-inter
+```
+
+macOS uses zsh as its login shell. `~/.zshenv` points zsh at `~/.config/zsh`,
+so the tracked `.zshrc` is read, and `.config/zsh/.zprofile` loads Homebrew
+without duplicating an existing `~/.zprofile`. The tracked `.bashrc` loads
+Homebrew the same way for bash.
+
+`.config/fontconfig/fonts.conf` only affects Linux: macOS uses CoreText, so
+install the fonts with the casks above. The YubiKey steps are in
+[YUBIKEY.md](YUBIKEY.md).
 
 ## Everyday use
 
@@ -128,11 +149,18 @@ It stays out of the way inside tmux, nvim's `:terminal`, VS Code's terminal and
 shells started from a shell that already asked. To skip it, set `NO_TMUX=1`
 in the environment.
 
+## Line endings
+
+`.gitattributes` normalises every text file to LF in the repository and in the
+working tree. Windows Git's default `core.autocrlf=true` would otherwise add
+CR to shell scripts and stop the kernel finding their interpreter. Batch files
+are the exception and keep CRLF.
+
 ## What is in here
 
 | Area | Files |
 |---|---|
-| Shells | `.config/fish/`, `.bashrc`, `.config/zsh/.zshrc`, `.config/shell/common.sh` (shared by bash and zsh), `.inputrc`, `.config/starship.toml` |
+| Shells | `.config/fish/`, `.bashrc`, `.zshenv`, `.config/zsh/.zshrc`, `.config/zsh/.zprofile`, `.config/shell/common.sh` (shared by bash and zsh), `.inputrc`, `.config/starship.toml` |
 | Git | `.config/git/config`, `.config/git/ignore`, `.editorconfig` |
 | GnuPG, SSH, YubiKey | `.gnupg/*.conf`, `.ssh/config`, `.local/bin/pinentry-auto`, [YUBIKEY.md](YUBIKEY.md) |
 | Editors | `.config/nvim/`, `.config/Code/User/settings.json` |
@@ -141,7 +169,7 @@ in the environment.
 
 The shell configuration expects these to be installed, and shells print errors
 at start-up until they are: `fish`, `starship`, `fzf`, `neovim`, `tmux`,
-`asdf`, `gnupg`.
+`asdf`, `gnupg`, `ripgrep`.
 
 `.config/fish/conf.d/flatpak.fish` stands in for the flatpak package's fish
 snippet, which runs `flatpak --installations` (about 0.1 s) in every fish,
@@ -173,6 +201,9 @@ back to the system fonts. On Debian:
 ```sh
 sudo apt install fonts-jetbrains-mono fonts-inter
 ```
+
+On macOS the casks above install them (`font-jetbrains-mono` and `font-inter`);
+fontconfig is not used there.
 
 ## Starting from scratch
 
