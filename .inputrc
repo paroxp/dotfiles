@@ -1,5 +1,6 @@
 # Readline: bash and other programs that use it (python, psql, ...).
-# Keep the system defaults, then add to them.
+# Keep the system defaults, then add to them. Linux has /etc/inputrc; macOS
+# has none, and readline ignores an include it cannot open.
 $include /etc/inputrc
 
 # Alt+Left / Alt+Right move a word back / forward, as in fish, zsh and nvim

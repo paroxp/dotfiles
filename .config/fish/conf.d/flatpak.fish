@@ -7,10 +7,20 @@
 #
 # XDG_DATA_DIRS is still one colon-separated string here: fish only splits
 # variables ending in PATH, and the vendor file makes it a path variable.
-set -l data_dirs (string split : -- $XDG_DATA_DIRS)
-set -q XDG_DATA_HOME; or set -l XDG_DATA_HOME $HOME/.local/share
+set -l data_dirs
+if set -q XDG_DATA_DIRS; and test -n "$XDG_DATA_DIRS"
+    set data_dirs (string split : -- $XDG_DATA_DIRS)
+end
+
+set -l data_home
+if set -q XDG_DATA_HOME; and test -n "$XDG_DATA_HOME"
+    set data_home $XDG_DATA_HOME
+else
+    set data_home $HOME/.local/share
+end
+
 if contains /var/lib/flatpak/exports/share $data_dirs
-    and contains $XDG_DATA_HOME/flatpak/exports/share $data_dirs
+    and contains $data_home/flatpak/exports/share $data_dirs
     # As the vendor file does, so fish sees a list either way
     set -x --path XDG_DATA_DIRS $XDG_DATA_DIRS
 else if test -r /usr/share/fish/vendor_conf.d/flatpak.fish
