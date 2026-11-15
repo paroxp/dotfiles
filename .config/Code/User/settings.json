@@ -11,6 +11,8 @@
     120
   ],
   "files.autoSave": "onFocusChange",
+  "files.eol": "\n",
+  "terminal.integrated.fontFamily": "'JetBrains Mono', monospace",
   "window.menuBarVisibility": "toggle",
   "workbench.colorCustomizations": {
     "terminal.ansiBlack": "#141C38",
