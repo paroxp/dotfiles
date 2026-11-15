@@ -1,0 +1,9 @@
+# Normalise every text file to LF in the repository and in the working tree.
+# The same files are read on Linux, macOS and Windows, and Windows Git's
+# autocrlf=true would otherwise add CR to shell scripts, which stops the
+# kernel finding their interpreter (bad interpreter: /bin/sh^M).
+* text=auto eol=lf
+
+# Batch files are the exception: cmd.exe wants CRLF.
+*.bat text eol=crlf
+*.cmd text eol=crlf
