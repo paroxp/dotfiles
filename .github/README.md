@@ -81,7 +81,19 @@ brew install --cask ghostty font-jetbrains-mono font-inter
 macOS uses zsh as its login shell. `~/.zshenv` points zsh at `~/.config/zsh`,
 so the tracked `.zshrc` is read, and `.config/zsh/.zprofile` loads Homebrew
 without duplicating an existing `~/.zprofile`. The tracked `.bashrc` loads
-Homebrew the same way for bash.
+Homebrew the same way for bash. An existing `~/.zshrc`, which installers often
+write, is no longer read: move what it still needs into
+`~/.config/zsh/.zshrc` or `~/.zprofile`, then delete it.
+
+VS Code on macOS reads its settings from `~/Library/Application Support`, not
+`~/.config`. Link the tracked file there, after moving any existing
+`settings.json` aside:
+
+```sh
+mkdir -p ~/Library/Application\ Support/Code/User
+ln -s ~/.config/Code/User/settings.json \
+    ~/Library/Application\ Support/Code/User/settings.json
+```
 
 `.config/fontconfig/fonts.conf` only affects Linux: macOS uses CoreText, so
 install the fonts with the casks above. The YubiKey steps are in
